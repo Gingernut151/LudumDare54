@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8wb4uyuvuwmb"]
+
+[ext_resource type="Texture2D" uid="uid://cg335wvg271av" path="res://images/SpriteSheets/monochrome-transparent_packed.png" id="1_na7s5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oxqi2"]
+size = Vector2(40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6xni"]
+atlas = ExtResource("1_na7s5")
+region = Rect2(1, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jr2p"]
+atlas = ExtResource("1_na7s5")
+region = Rect2(256, 0, 16, 16)
+
+[node name="Wall" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_oxqi2")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_f6xni")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(20, 20)
+scale = Vector2(2.5, 2.5)
+texture = SubResource("AtlasTexture_2jr2p")

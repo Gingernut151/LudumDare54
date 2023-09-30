@@ -2,7 +2,7 @@ extends Area2D
 
 var animation_speed = 2
 var moving = false
-var tile_size = 64
+var tile_size = 40
 var inputs = {
 	"Movement_Right": Vector2.RIGHT,
 	"Movement_Left": Vector2.LEFT,

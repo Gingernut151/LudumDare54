@@ -1,0 +1,137 @@
+[gd_scene load_steps=3 format=3 uid="uid://culn6rpto4vjd"]
+
+[ext_resource type="PackedScene" uid="uid://fpoihfronc6c" path="res://Scripts/Environment/Floor.tscn" id="1_7fvnv"]
+[ext_resource type="PackedScene" uid="uid://b8wb4uyuvuwmb" path="res://Scripts/Environment/Wall.tscn" id="2_33ou5"]
+
+[node name="Level_01" type="Node2D"]
+
+[node name="Wall" parent="." instance=ExtResource("2_33ou5")]
+
+[node name="Wall" parent="Wall" instance=ExtResource("2_33ou5")]
+position = Vector2(40, 0)
+
+[node name="Wall" parent="Wall/Wall" instance=ExtResource("2_33ou5")]
+position = Vector2(40, 0)
+
+[node name="Wall" parent="Wall/Wall/Wall" instance=ExtResource("2_33ou5")]
+position = Vector2(40, 0)
+
+[node name="Wall" parent="Wall/Wall/Wall/Wall" instance=ExtResource("2_33ou5")]
+position = Vector2(40, 0)
+
+[node name="Wall" parent="Wall/Wall/Wall/Wall/Wall" instance=ExtResource("2_33ou5")]
+position = Vector2(40, 0)
+
+[node name="Wall" parent="Wall/Wall/Wall/Wall/Wall/Wall" instance=ExtResource("2_33ou5")]
+position = Vector2(40, 0)
+
+[node name="Wall" parent="Wall/Wall/Wall/Wall/Wall/Wall/Wall" instance=ExtResource("2_33ou5")]
+position = Vector2(40, 0)
+
+[node name="Wall" parent="Wall/Wall/Wall/Wall/Wall/Wall/Wall/Wall" instance=ExtResource("2_33ou5")]
+position = Vector2(40, 0)
+
+[node name="Wall" parent="Wall/Wall/Wall/Wall/Wall/Wall/Wall/Wall/Wall" instance=ExtResource("2_33ou5")]
+position = Vector2(40, 0)
+
+[node name="Wall" parent="Wall/Wall/Wall/Wall/Wall/Wall/Wall/Wall/Wall/Wall" instance=ExtResource("2_33ou5")]
+position = Vector2(40, 0)
+
+[node name="Wall2" parent="Wall" instance=ExtResource("2_33ou5")]
+position = Vector2(0, 40)
+
+[node name="Floor" parent="Wall/Wall2" instance=ExtResource("1_7fvnv")]
+position = Vector2(40, 0)
+
+[node name="Floor" parent="Wall/Wall2/Floor" instance=ExtResource("1_7fvnv")]
+position = Vector2(40, 0)
+
+[node name="Floor" parent="Wall/Wall2/Floor/Floor" instance=ExtResource("1_7fvnv")]
+position = Vector2(40, 0)
+
+[node name="Floor" parent="Wall/Wall2/Floor/Floor/Floor" instance=ExtResource("1_7fvnv")]
+position = Vector2(40, 0)
+
+[node name="Floor" parent="Wall/Wall2/Floor/Floor/Floor/Floor" instance=ExtResource("1_7fvnv")]
+position = Vector2(40, 0)
+
+[node name="Floor" parent="Wall/Wall2/Floor/Floor/Floor/Floor/Floor" instance=ExtResource("1_7fvnv")]
+position = Vector2(40, 0)
+
+[node name="Floor" parent="Wall/Wall2/Floor/Floor/Floor/Floor/Floor/Floor" instance=ExtResource("1_7fvnv")]
+position = Vector2(40, 0)
+
+[node name="Floor" parent="Wall/Wall2/Floor/Floor/Floor/Floor/Floor/Floor/Floor" instance=ExtResource("1_7fvnv")]
+position = Vector2(40, 0)
+
+[node name="Floor" parent="Wall/Wall2/Floor/Floor/Floor/Floor/Floor/Floor/Floor/Floor" instance=ExtResource("1_7fvnv")]
+position = Vector2(40, 0)
+
+[node name="Floor" parent="Wall/Wall2/Floor/Floor/Floor/Floor/Floor/Floor/Floor/Floor/Floor" instance=ExtResource("1_7fvnv")]
+position = Vector2(40, 0)
+
+[node name="Wall2" parent="." instance=ExtResource("2_33ou5")]
+position = Vector2(0, 80)
+
+[node name="Floor" parent="Wall2" instance=ExtResource("1_7fvnv")]
+position = Vector2(40, 0)
+
+[node name="Floor" parent="Wall2/Floor" instance=ExtResource("1_7fvnv")]
+position = Vector2(40, 0)
+
+[node name="Floor" parent="Wall2/Floor/Floor" instance=ExtResource("1_7fvnv")]
+position = Vector2(40, 0)
+
+[node name="Floor" parent="Wall2/Floor/Floor/Floor" instance=ExtResource("1_7fvnv")]
+position = Vector2(40, 0)
+
+[node name="Floor" parent="Wall2/Floor/Floor/Floor/Floor" instance=ExtResource("1_7fvnv")]
+position = Vector2(40, 0)
+
+[node name="Floor" parent="Wall2/Floor/Floor/Floor/Floor/Floor" instance=ExtResource("1_7fvnv")]
+position = Vector2(40, 0)
+
+[node name="Floor" parent="Wall2/Floor/Floor/Floor/Floor/Floor/Floor" instance=ExtResource("1_7fvnv")]
+position = Vector2(40, 0)
+
+[node name="Floor" parent="Wall2/Floor/Floor/Floor/Floor/Floor/Floor/Floor" instance=ExtResource("1_7fvnv")]
+position = Vector2(40, 0)
+
+[node name="Floor" parent="Wall2/Floor/Floor/Floor/Floor/Floor/Floor/Floor/Floor" instance=ExtResource("1_7fvnv")]
+position = Vector2(40, 0)
+
+[node name="Floor" parent="Wall2/Floor/Floor/Floor/Floor/Floor/Floor/Floor/Floor/Floor" instance=ExtResource("1_7fvnv")]
+position = Vector2(40, 0)
+
+[node name="Wall3" parent="." instance=ExtResource("2_33ou5")]
+position = Vector2(0, 120)
+
+[node name="Wall" parent="Wall3" instance=ExtResource("2_33ou5")]
+position = Vector2(40, 0)
+
+[node name="Wall" parent="Wall3/Wall" instance=ExtResource("2_33ou5")]
+position = Vector2(40, 0)
+
+[node name="Wall" parent="Wall3/Wall/Wall" instance=ExtResource("2_33ou5")]
+position = Vector2(40, 0)
+
+[node name="Wall" parent="Wall3/Wall/Wall/Wall" instance=ExtResource("2_33ou5")]
+position = Vector2(40, 0)
+
+[node name="Wall" parent="Wall3/Wall/Wall/Wall/Wall" instance=ExtResource("2_33ou5")]
+position = Vector2(40, 0)
+
+[node name="Wall" parent="Wall3/Wall/Wall/Wall/Wall/Wall" instance=ExtResource("2_33ou5")]
+position = Vector2(40, 0)
+
+[node name="Wall" parent="Wall3/Wall/Wall/Wall/Wall/Wall/Wall" instance=ExtResource("2_33ou5")]
+position = Vector2(40, 0)
+
+[node name="Wall" parent="Wall3/Wall/Wall/Wall/Wall/Wall/Wall/Wall" instance=ExtResource("2_33ou5")]
+position = Vector2(40, 0)
+
+[node name="Wall" parent="Wall3/Wall/Wall/Wall/Wall/Wall/Wall/Wall/Wall" instance=ExtResource("2_33ou5")]
+position = Vector2(40, 0)
+
+[node name="Wall" parent="Wall3/Wall/Wall/Wall/Wall/Wall/Wall/Wall/Wall/Wall" instance=ExtResource("2_33ou5")]
+position = Vector2(40, 0)
