@@ -5,9 +5,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ecj0k"]
 size = Vector2(40, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oxdjq"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxfvs"]
 atlas = ExtResource("1_dhf1j")
-region = Rect2(0, 0, 16, 16)
+region = Rect2(16, 0, 16, 16)
 
 [node name="Floor" type="StaticBody2D"]
 
@@ -16,7 +16,9 @@ position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_ecj0k")
 disabled = true
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = SubResource("AtlasTexture_oxdjq")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.278431)
+self_modulate = Color(1, 1, 1, 0.313726)
+position = Vector2(20, 20)
+scale = Vector2(2.5, 2.5)
+texture = SubResource("AtlasTexture_gxfvs")
