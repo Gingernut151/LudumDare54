@@ -1,19 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://5nk4nmv7uva2"]
+[gd_scene load_steps=5 format=3 uid="uid://jn1h8nu5ycyf"]
 
 [ext_resource type="Texture2D" uid="uid://cg335wvg271av" path="res://images/SpriteSheets/monochrome-transparent_packed.png" id="1_na7s5"]
+[ext_resource type="Script" path="res://Scripts/Environment/Grave.gd" id="1_pff2d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oxqi2"]
 size = Vector2(40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2jr2p"]
 atlas = ExtResource("1_na7s5")
-region = Rect2(0, 0, 16, 16)
+region = Rect2(160, 144, 16, 16)
 
-[node name="Gap" type="StaticBody2D"]
+[node name="Grave" type="StaticBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_oxqi2")
+disabled = true
+script = ExtResource("1_pff2d")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(20, 20)

@@ -3,6 +3,7 @@ extends Node2D
 @export var floor_Scene: PackedScene
 @export var gap_Scene: PackedScene
 @export var wall_Scene: PackedScene
+@export var Grave_Scene: PackedScene
 
 @export var LayoutFileName = "res://Maps/Layouts/Level_01.txt"
 
@@ -63,5 +64,9 @@ func ProcessData():
 				var wall_cell = wall_Scene.instantiate()
 				wall_cell.set_position(Vector2(CellPos_X, CellPos_Y))
 				add_child(wall_cell)
+			elif cell == "n":
+				var Grave_cell = Grave_Scene.instantiate()
+				Grave_cell.set_position(Vector2(CellPos_X, CellPos_Y))
+				add_child(Grave_cell)
 				
 			Column_int += 1
