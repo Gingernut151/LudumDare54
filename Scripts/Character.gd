@@ -1,47 +1,52 @@
-extends CharacterBody2D
+extends Area2D
 
-@export var speed: int = 200
-var CharacterWidth: float = 50.0
-var CharacterHeight: float = 100.0
+var animation_speed = 2
+var moving = false
+var tile_size = 64
+var inputs = {
+	"Movement_Right": Vector2.RIGHT,
+	"Movement_Left": Vector2.LEFT,
+	"Movement_Up": Vector2.UP,
+	"Movement_Down": Vector2.DOWN
+}
 
-var CurrentAmountToMove: float = -1.0
-var CurrentMoveVector: Vector2
-
+@onready var ray = $RayCast2D
 @onready var _animated_sprite = $AnimatedSprite2D
 
-func _physics_process(delta):
-	handleInput(delta)
-	move_and_slide()
-
-
-func handleInput(delta):
-	var moveDirection = GetInputDirectionPressed()
-	
-	if moveDirection != Vector2.ZERO:
-		if CurrentAmountToMove <= 0.0:
-			CurrentAmountToMove = 50.0
-			CurrentMoveVector = moveDirection
-			
-			
-	if CurrentAmountToMove > 0.0:
-		velocity = CurrentMoveVector * speed
-		CurrentAmountToMove -= velocity.length() * delta
-	else:
-		velocity = Vector2.ZERO
-
-func GetInputDirectionPressed():
-	var moveDirection = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	
-	if Input.is_action_pressed("ui_right"):
+func GetInputDirectionPressed(dir):
+	if inputs[dir] == inputs.Movement_Right:
 		_animated_sprite.play("walk")
 		_animated_sprite.flip_h = false
-	elif Input.is_action_pressed("ui_left"):
+	elif inputs[dir] == inputs.Movement_Left:
 		_animated_sprite.play("walk")
 		_animated_sprite.flip_h = true
 	else:
 		_animated_sprite.play("idle")
+
+
+func _ready():
+	position = position.snapped(Vector2.ONE * tile_size)
+	position += Vector2.ONE * tile_size / 2
+	_animated_sprite.play("idle")
 	
-	if (abs(moveDirection.length()) != 1.0):
-		moveDirection = Vector2.ZERO
+func _unhandled_input(event):
+	if moving:
+		return
 	
-	return moveDirection
+	for dir in inputs.keys():
+		if event.is_action_pressed(dir):
+			move(dir)
+			
+func move(dir):
+	ray.target_position = inputs[dir] * tile_size
+	ray.force_raycast_update()
+	if !ray.is_colliding():
+		#position += inputs[dir] * tile_size
+		var tween = get_tree().create_tween()
+		tween.tween_property(self, "position", position + inputs[dir] * tile_size, 1.0/animation_speed).set_trans(Tween.TRANS_SINE)
+		moving = true
+		#$AnimationPlayer.play(dir)
+		GetInputDirectionPressed(dir)
+		await tween.finished
+		moving = false
+		_animated_sprite.play("idle")
