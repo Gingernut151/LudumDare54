@@ -1,7 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://1rusvemldfve"]
+[gd_scene load_steps=37 format=3 uid="uid://1rusvemldfve"]
 
 [ext_resource type="Script" path="res://Scripts/Character.gd" id="1_m5tni"]
 [ext_resource type="Texture2D" uid="uid://dgtjoqsjtbh5c" path="res://images/SpriteSheets/mon1_sprite_addon_2012_12_14.png" id="2_12cro"]
+[ext_resource type="Texture2D" uid="uid://cbj0sf54aydan" path="res://images/light.png" id="3_jaq4p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdcuq"]
 size = Vector2(32, 32)
@@ -279,3 +280,12 @@ offset = Vector2(-16, -22)
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(15, 18)
 target_position = Vector2(0, 16)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(16, 17)
+energy = 0.5
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 50.0
+texture = ExtResource("3_jaq4p")
+texture_scale = 0.8

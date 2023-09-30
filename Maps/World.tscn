@@ -26,3 +26,9 @@ size_flags_vertical = 3
 
 [node name="Level_01" parent="." instance=ExtResource("5_qhn4n")]
 position = Vector2(16, 17)
+
+[node name="Background" type="ColorRect" parent="."]
+z_index = -1
+offset_right = 512.0
+offset_bottom = 576.0
+color = Color(0.146219, 0.0126061, 0.175114, 1)

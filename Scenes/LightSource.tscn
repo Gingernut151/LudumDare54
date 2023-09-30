@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://crk1g6ecpg5ec"]
+
+[ext_resource type="Texture2D" uid="uid://bhd5sbyxymcru" path="res://icon.svg" id="1_ib0b5"]
+[ext_resource type="Texture2D" uid="uid://cbj0sf54aydan" path="res://images/light.png" id="1_j500g"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_8gpik"]
+polygon = PackedVector2Array(32, 64, 32, 192, 160, 192, 160, 64)
+
+[node name="LightSource" type="StaticBody2D"]
+position = Vector2(-128, -128)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(398, 578)
+energy = 5.19
+shadow_enabled = true
+shadow_filter = 2
+texture = ExtResource("1_j500g")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(297, 341)
+occluder = SubResource("OccluderPolygon2D_8gpik")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2(-192, 160)
+color = Color(0.529412, 0.529412, 0.529412, 1)
+
+[node name="Icon" type="Sprite2D" parent="."]
+modulate = Color(0.0980392, 0.0980392, 0.0980392, 1)
+position = Vector2(232, 390)
+scale = Vector2(12.9184, 10.2192)
+texture = ExtResource("1_ib0b5")
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(395, 469)
+texture = ExtResource("1_ib0b5")
