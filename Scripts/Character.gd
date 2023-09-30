@@ -17,9 +17,15 @@ func GetInputDirectionPressed(dir):
 	if inputs[dir] == inputs.Movement_Right:
 		_animated_sprite.play("walk")
 		_animated_sprite.flip_h = false
+		_animated_sprite.rotation_degrees = 0.0
 	elif inputs[dir] == inputs.Movement_Left:
 		_animated_sprite.play("walk")
 		_animated_sprite.flip_h = true
+		_animated_sprite.rotation_degrees = 0.0
+	elif inputs[dir] == inputs.Movement_Up:
+		_animated_sprite.play("walk")
+	elif inputs[dir] == inputs.Movement_Down:
+		_animated_sprite.play("walk")
 	else:
 		_animated_sprite.play("idle")
 
