@@ -51,15 +51,15 @@ func ProcessData():
 			var CellPos_X = Column_int * MapCellSize
 			var CellPos_Y = row_int * MapCellSize
 				
-			if cell == "0":
+			if cell == "-":
 				var gap_cell = gap_Scene.instantiate()
 				gap_cell.set_position(Vector2(CellPos_X, CellPos_Y))
 				add_child(gap_cell)
-			elif cell == "2":
+			elif cell == " ":
 				var floor_cell = floor_Scene.instantiate()
 				floor_cell.set_position(Vector2(CellPos_X, CellPos_Y))
 				add_child(floor_cell)
-			elif cell == "1":
+			elif cell == "/":
 				var wall_cell = wall_Scene.instantiate()
 				wall_cell.set_position(Vector2(CellPos_X, CellPos_Y))
 				add_child(wall_cell)
