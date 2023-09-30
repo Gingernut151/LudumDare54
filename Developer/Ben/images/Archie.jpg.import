@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c3b238ujqvb8p"
-path="res://.godot/imported/Archie.jpg-e15113e87bf54600ebb8e78cc0192ba5.ctex"
+path="res://.godot/imported/Archie.jpg-195f460d411a6bb59df85af421021c62.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/Archie.jpg"
-dest_files=["res://.godot/imported/Archie.jpg-e15113e87bf54600ebb8e78cc0192ba5.ctex"]
+source_file="res://Developer/Ben/images/Archie.jpg"
+dest_files=["res://.godot/imported/Archie.jpg-195f460d411a6bb59df85af421021c62.ctex"]
 
 [params]
 
