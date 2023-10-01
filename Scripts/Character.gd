@@ -26,8 +26,10 @@ var inputs = {
 
 @onready var ray = $RayCast2D
 @onready var _animated_sprite = $AnimatedSprite2D
+@onready var pickedUp
 
 func _ready():
+	pickedUp = true
 	lastPos = self.position
 	pass
 
@@ -91,6 +93,7 @@ func setStartPos(InPosition : Vector2):
 	position += Vector2.ONE * tile_size / 2
 	_animated_sprite.play("idle")
 	shader_value = 0.033
+	
 
 #=============================================
 # Abilities
@@ -103,10 +106,12 @@ func ResourceManagement():
 	SpawnEnergy()
 	
 func SpawnEnergy():
-	lastPos = self.position
-	var instance = Energy.instantiate()
-	get_tree().get_root().get_node("World").add_child(instance)
-	instance.position = (lastPos + posOffset)
+	if pickedUp == true:
+		lastPos = self.position
+		var instance = Energy.instantiate()
+		get_tree().get_root().get_node("World").add_child(instance)
+		instance.position = (lastPos + posOffset)
+	return
 
 #=============================================
 # UI
@@ -115,3 +120,8 @@ func SpawnEnergy():
 func UpdateCellNeededToMove(CellCount):
 	if CellsNeededToComplete == 0:
 		CellsNeededToComplete = CellCount
+
+func _on_area_entered(area):
+	remove_child(area)
+	pickedUp = true
+

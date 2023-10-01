@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cbj0sf54aydan" path="res://images/light.png" id="3_jaq4p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdcuq"]
-size = Vector2(32, 32)
+size = Vector2(26, 29)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i11lx"]
 atlas = ExtResource("2_12cro")
@@ -261,20 +261,20 @@ animations = [{
 "speed": 16.0
 }]
 
-[node name="Character" type="Area2D"]
+[node name="Character" type="Area2D" groups=["Player"]]
 z_index = 1
 texture_filter = 1
 position = Vector2(256, 288)
-monitoring = false
+collision_mask = 2
 script = ExtResource("1_m5tni")
 posOffset = Vector2(16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(16, 16)
+position = Vector2(15, 17)
 shape = SubResource("RectangleShape2D_tdcuq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(20, 24)
+position = Vector2(19, 23)
 sprite_frames = SubResource("SpriteFrames_w3fv1")
 animation = &"walk"
 centered = false
@@ -292,3 +292,5 @@ shadow_filter = 2
 shadow_filter_smooth = 3.5
 texture = ExtResource("3_jaq4p")
 texture_scale = 0.8
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
