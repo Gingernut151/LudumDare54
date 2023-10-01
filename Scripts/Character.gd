@@ -5,6 +5,7 @@ var moving = false
 var tile_size = 40
 var CellsNeededToComplete : int = 0
 var StanimaVignetePower : float = 0.33
+var CanMove : bool = false
 
 	
 var lastPos:= Vector2()
@@ -27,8 +28,6 @@ var inputs = {
 # Pre Defined
 #=============================================	
 
-
-
 func _ready():
 	pickedUp = false
 	lastPos = self.position
@@ -39,7 +38,7 @@ func _ready():
 #=============================================	
 
 func _unhandled_input(event):
-	if moving:
+	if moving || !CanMove:
 		return
 	
 	for dir in inputs.keys():
@@ -65,6 +64,9 @@ func GetInputDirectionPressed(dir):
 		
 	else:
 		_animated_sprite.play("idle")
+
+func SetMovementState(InState : bool):
+	CanMove = InState;
 
 #=============================================
 # Movement

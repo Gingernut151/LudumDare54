@@ -56,8 +56,10 @@ func HandleFrontendShown(inState : bool):
 	
 	if (isInFrontend):
 		$Character.hide()
+		$Character.SetMovementState(false)
 	else:
 		$Character.show()
+		$Character.SetMovementState(true)
 
 func HandlePauseState(InState : bool):
 	isPaused = InState
@@ -66,13 +68,14 @@ func HandlePauseState(InState : bool):
 func HandleGameOverState(InState : bool):
 	isGameOver = InState
 	$GameOver.ShowwGameOverMenu(isGameOver)
+	$Character.ResourceManagement()
+	$Character.SetMovementState(!InState)
 
 func GetLevelToUse():
 	return LevelLayouts
 
 func ResetMap():
 	$Character.setStartPos(CurrentLevelMap.CharacterStartLocation)
-	
 	var desired_children = []
 	desired_children = get_tree().get_nodes_in_group("Energy")
 	
