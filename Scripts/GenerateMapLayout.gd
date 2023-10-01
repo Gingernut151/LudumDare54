@@ -29,6 +29,34 @@ func _ready():
 func _process(delta):
 	update_path()
 	pass
+	
+func _on_draw():	
+	if EnablePathDebug:		
+		for x in LevelArray[0].length() + 1:
+			draw_line(Vector2(x * MapCellSize, 0),
+				Vector2(x * MapCellSize, LevelArray.size() * MapCellSize),
+				Color.DARK_GRAY, 2.0)
+			
+		for y in LevelArray.size() + 1:
+			draw_line(Vector2(0, y * MapCellSize),
+				Vector2(LevelArray[0].length() * MapCellSize, y * MapCellSize),
+				Color.DARK_GRAY, 2.0)
+			
+		draw_rect(Rect2(PathStartLoc * MapCellSize, Vector2(MapCellSize,MapCellSize)), Color.GREEN_YELLOW)
+		draw_rect(Rect2(GraveLocation * MapCellSize, Vector2(MapCellSize,MapCellSize)), Color.ORANGE_RED)
+	
+	
+		for x in LevelArray[0].length():
+			for y in LevelArray.size():
+				if astarGrid.is_point_solid(Vector2i(x,y)):
+					var BlockedLoc = Vector2(x,y)
+					draw_rect(Rect2(BlockedLoc * MapCellSize, Vector2(MapCellSize,MapCellSize)), Color.DARK_RED)
+			
+	pass # Replace with function body.
+
+#=============================================
+# Map Generation
+#=============================================	
 
 func load_file(file):
 	if not FileAccess.file_exists(file):
@@ -92,6 +120,9 @@ func ProcessData():
 				
 			Column_int += 1
 
+#=============================================
+# A Star Pathing setup
+#=============================================	
 
 func InitAStarPath():	
 	astarGrid = AStarGrid2D.new()
@@ -125,31 +156,6 @@ func DebugPrintAStarPath(PathToFollow):
 		var debug_cell = DebugPath_Scene.instantiate()
 		debug_cell.set_position(pathLocation)
 		add_child(debug_cell)
-
-func _on_draw():	
-	
-	if EnablePathDebug:		
-		for x in LevelArray[0].length() + 1:
-			draw_line(Vector2(x * MapCellSize, 0),
-				Vector2(x * MapCellSize, LevelArray.size() * MapCellSize),
-				Color.DARK_GRAY, 2.0)
-			
-		for y in LevelArray.size() + 1:
-			draw_line(Vector2(0, y * MapCellSize),
-				Vector2(LevelArray[0].length() * MapCellSize, y * MapCellSize),
-				Color.DARK_GRAY, 2.0)
-			
-		draw_rect(Rect2(PathStartLoc * MapCellSize, Vector2(MapCellSize,MapCellSize)), Color.GREEN_YELLOW)
-		draw_rect(Rect2(GraveLocation * MapCellSize, Vector2(MapCellSize,MapCellSize)), Color.ORANGE_RED)
-	
-	
-		for x in LevelArray[0].length():
-			for y in LevelArray.size():
-				if astarGrid.is_point_solid(Vector2i(x,y)):
-					var BlockedLoc = Vector2(x,y)
-					draw_rect(Rect2(BlockedLoc * MapCellSize, Vector2(MapCellSize,MapCellSize)), Color.DARK_RED)
-			
-	pass # Replace with function body.
 
 func update_path():
 	
