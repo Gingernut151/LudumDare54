@@ -26,8 +26,12 @@ func ShowFrontend(InState : bool):
 	else:
 		$CanvasLayer.hide()
 		$MenuMusic/AnimationPlayer.play("MenuMusic")
-		if !$MenuMusic/AnimationPlayer.is_playing():
-			$MenuMusic.stop()
+		$MenuMusic/AnimationPlayer.connect("animation_finished", On_Anim_Finished)
+
+func On_Anim_Finished(anim_name):
+	if anim_name == "MenuMusic":
+		$MenuMusic.stop()
+		$MenuMusic/AnimationPlayer.disconnect("animation_finished", On_Anim_Finished)
 
 #=============================================
 # Signals
