@@ -7,8 +7,10 @@ extends Node2D
 @export var DebugPath_Scene: PackedScene
 
 @export var LayoutFileName = "res://Maps/Layouts/Level_01.txt"
+@export var GraveTextFileName = "res://Maps/Layouts/GraveWritings.txt"
 
 var LevelArray : PackedStringArray
+var GraveTextArray : PackedStringArray
 var MapCellSize : int = 40
 var astarGrid : AStarGrid2D
 var GraveLocation : Vector2i
@@ -62,6 +64,9 @@ func InitMap(InLevel):
 	ProcessData()
 
 func load_file(file):
+
+	# This is to load in the level data for the cell
+	# =================================================
 	if not FileAccess.file_exists(file):
 		return # Error! We don't have a save to load.
 		
@@ -76,6 +81,24 @@ func load_file(file):
 		index += 1
 		
 	LevelLayout.close()
+	
+	# This is to load in the grave texts
+	# =================================================
+	if not FileAccess.file_exists(GraveTextFileName):
+		return # Error! We don't have a save to load.
+		
+	var GraveTexts = FileAccess.open(GraveTextFileName, FileAccess.READ)
+	index = 1
+	
+	while not GraveTexts.eof_reached(): # iterate through all lines until the end of file is reached
+		var line = GraveTexts.get_line()
+		line += " "
+		print(line + str(index))
+		GraveTextArray.append(line)
+		index += 1
+		
+	GraveTexts.close()
+	
 	return
 
 func ProcessData():
@@ -116,7 +139,7 @@ func ProcessData():
 				GraveLocation = Vector2i(CellPos_X, CellPos_Y)
 				var Grave_cell = Grave_Scene.instantiate()
 				Grave_cell.set_position(Vector2i(CellPos_X, CellPos_Y))
-				Grave_cell.add_to_group("Grave")
+				Grave_cell.add_to_group("Graves")
 				add_child(Grave_cell)
 			elif cell == "o":
 				CharacterStartLocation = Vector2i(CellPos_X, CellPos_Y)
@@ -127,6 +150,16 @@ func ProcessData():
 				add_child(floor_cell)
 				
 			Column_int += 1
+
+func UpdateAllGraveTexts():
+	
+	var desired_children = []
+	desired_children = get_tree().get_nodes_in_group("Graves")
+	
+	for child in desired_children:
+		var graveIndex : int = randi_range(0, 5)
+		var FoundText : String = GraveTextArray[graveIndex]
+		child.SetGraveWritting(FoundText)
 
 #=============================================
 # A Star Pathing setup
@@ -142,8 +175,6 @@ func InitAStarPath():
 	astarGrid.set_default_estimate_heuristic(AStarGrid2D.HEURISTIC_MANHATTAN)
 	astarGrid.jumping_enabled = false
 	astarGrid.update()
-	
-
 
 func GetMinimalPathAmount(StartLocation):
 		PathStartLoc = StartLocation
@@ -157,7 +188,7 @@ func GetMinimalPathAmount(StartLocation):
 			queue_redraw()
 		
 		return minimalPath.size()
-		
+
 func DebugPrintAStarPath(PathToFollow):
 	
 	for pathLocation in PathToFollow:

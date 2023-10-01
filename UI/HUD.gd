@@ -21,6 +21,15 @@ func ShowwInGameHUD(InState : bool):
 
 func update_debugtext(inLocation):
 	$Canvas_Ingame/DistanceAway.text = str(inLocation)
+	
+func ShowGraveWriting(inShowState : bool, InWriting : String):
+	
+	if inShowState:
+		$Canvas_Ingame/GraveWriting.show()
+		$Canvas_Ingame/GraveWriting.text = InWriting
+	else:
+		$Canvas_Ingame/GraveWriting.hide()
+		$Canvas_Ingame/GraveWriting.text = ""
 
 #=============================================
 # Pause Menu

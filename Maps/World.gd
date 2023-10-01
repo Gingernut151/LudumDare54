@@ -72,6 +72,9 @@ func HandleGameOverState(InState : bool):
 	$Character.ResourceManagement()
 	$Character.SetMovementState(!InState)
 
+func OnGraveHit(IsEntered : bool, InWriting : String):
+	$HUD.ShowGraveWriting(true, InWriting)
+
 func GetLevelToUse():
 	return LevelLayouts
 
@@ -93,7 +96,10 @@ func SetMapLive(InNumber : int):
 	CurrentLevelMap = LevelGenerateScene.instantiate()
 	CurrentLevelMap.InitMap(LevelFile)
 	CurrentLevelMap.set_position(Vector2i(16, 16))
+		
 	add_child(CurrentLevelMap)
+	
+	CurrentLevelMap.UpdateAllGraveTexts()
 
 #=============================================
 # Signals
