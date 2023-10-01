@@ -3,6 +3,18 @@ extends Node
 var isInFrontend : bool = true
 var isPaused : bool = false
 var isGameOver : bool = false
+var CurrentMapIndex : int = 1
+
+@export var LevelGenerateScene: PackedScene
+var CurrentLevelMap : Node2D
+
+var LevelLayouts = {
+	1: "res://Maps/Layouts/Level_01.txt",
+	2: "res://Maps/Layouts/Level_02.txt",
+	3: "res://Maps/Layouts/Level_03.txt",
+	4: "res://Maps/Layouts/Level_04.txt",
+	5: "res://Maps/Layouts/Level_05.txt",
+}
 
 #=============================================
 # Pre defined
@@ -18,7 +30,7 @@ func _ready():
 func _process(delta):
 	
 	if !isInFrontend:
-		var MinimalPathNeeded = $Level_01.GetMinimalPathAmount($Character.get_position());
+		var MinimalPathNeeded = CurrentLevelMap.GetMinimalPathAmount($Character.get_position());
 	
 		$HUD.update_debugtext(MinimalPathNeeded)
 		$Character.UpdateCellNeededToMove(MinimalPathNeeded)
@@ -36,33 +48,60 @@ func _process(delta):
 func HandleFrontendShown(inState : bool):
 	$Frontend.ShowFrontend(inState)
 	$HUD.ShowwPauseMenu(false)
+	$GameOver.ShowwGameOverMenu(false)
 	$HUD.ShowwInGameHUD(!inState)
 	isInFrontend = inState
+	isGameOver = false
+	isPaused = false
 	
 	if (isInFrontend):
 		$Character.hide()
-		$Level_01.hide()
 	else:
 		$Character.show()
-		$Level_01.show()
 
 func HandlePauseState(InState : bool):
 	isPaused = InState
 	$HUD.ShowwPauseMenu(isPaused)
 	
-func ResetMap():
-	$Character.setStartPos($Level_01.CharacterStartLocation)
-	pass
+func HandleGameOverState(InState : bool):
+	isGameOver = InState
+	$GameOver.ShowwGameOverMenu(isGameOver)
 
+func GetLevelToUse():
+	return LevelLayouts
+
+func ResetMap():
+	$Character.setStartPos(CurrentLevelMap.CharacterStartLocation)
+	
+	var desired_children = []
+	desired_children = get_tree().get_nodes_in_group("Energy")
+	
+	for child in desired_children:
+		remove_child(child)
+
+func SetMapLive(InNumber : int):
+	
+	if CurrentLevelMap:
+		remove_child(CurrentLevelMap)
+	
+	var LevelFile = LevelLayouts[InNumber]
+	
+	CurrentLevelMap = LevelGenerateScene.instantiate()
+	CurrentLevelMap.InitMap(LevelFile)
+	CurrentLevelMap.set_position(Vector2i(16, 16))
+	add_child(CurrentLevelMap)
 
 #=============================================
 # Signals
 #=============================================	
 
 func _on_frontend_start_game():
+	CurrentMapIndex = 1
+	SetMapLive(CurrentMapIndex)
 	ResetMap()
 	HandleFrontendShown(false)
 	pass # Replace with function body.
+
 
 func _on_frontend_quit_game():
 	get_tree().quit()
@@ -83,4 +122,24 @@ func _on_hud_on_restart_pressed():
 
 func _on_hud_on_resume_pressed():
 	HandlePauseState(false)
+	pass # Replace with function body.
+
+
+func _on_game_over_next_map():
+	CurrentMapIndex += 1
+	SetMapLive(CurrentMapIndex)
+	ResetMap()
+	HandleGameOverState(false)
+	pass # Replace with function body.
+
+
+func _on_game_over_quit_map():
+	HandleFrontendShown(true)
+	pass # Replace with function body.
+
+
+func _on_game_over_retry_map():
+	ResetMap()
+	$Character.ResourceManagement()
+	HandleGameOverState(false)
 	pass # Replace with function body.

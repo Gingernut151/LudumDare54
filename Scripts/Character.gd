@@ -109,7 +109,8 @@ func SpawnEnergy():
 	if pickedUp == true:
 		lastPos = self.position
 		var instance = Energy.instantiate()
-		get_tree().get_root().get_node("World").add_child(instance)
+		instance.add_to_group("Energy")
+		get_tree().get_root().get_node("World").add_child(instance)	
 		instance.position = (lastPos + posOffset)
 	return
 

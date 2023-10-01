@@ -1,0 +1,71 @@
+[gd_scene load_steps=3 format=3 uid="uid://f61gy2w7un02"]
+
+[ext_resource type="Script" path="res://UI/GameOver.gd" id="1_ldb43"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_clkbw"]
+font_size = 30
+shadow_size = 15
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ldb43")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.3
+anchor_right = 0.5
+anchor_bottom = 0.3
+offset_left = -198.5
+offset_top = -45.0
+offset_right = 198.5
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Congrats
+Time to Raid the next grave"
+label_settings = SubResource("LabelSettings_clkbw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="btn_Resume" type="Button" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.5
+anchor_right = 0.8
+anchor_bottom = 0.6
+grow_horizontal = 2
+grow_vertical = 2
+text = "Next Grave"
+
+[node name="btn_Restart" type="Button" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.62
+anchor_right = 0.8
+anchor_bottom = 0.72
+grow_horizontal = 2
+grow_vertical = 2
+text = "Retry"
+
+[node name="btn_Quit" type="Button" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.74
+anchor_right = 0.8
+anchor_bottom = 0.84
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit
+"
+
+[connection signal="button_up" from="CanvasLayer/btn_Resume" to="." method="_on_btn_resume_button_up"]
+[connection signal="button_up" from="CanvasLayer/btn_Restart" to="." method="_on_btn_restart_button_up"]
+[connection signal="button_up" from="CanvasLayer/btn_Quit" to="." method="_on_btn_quit_button_up"]

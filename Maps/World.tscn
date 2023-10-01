@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://chlpx4assy44y"]
+[gd_scene load_steps=10 format=3 uid="uid://chlpx4assy44y"]
 
 [ext_resource type="Script" path="res://Maps/World.gd" id="1_d63cw"]
 [ext_resource type="PackedScene" uid="uid://1rusvemldfve" path="res://Scripts/Character.tscn" id="1_piqlw"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bhd5sbyxymcru" path="res://icon.svg" id="4_bk3yf"]
 [ext_resource type="Shader" uid="uid://db5l3qj11r7w7" path="res://Developer/CRT_shader.tres" id="4_xk0o8"]
 [ext_resource type="PackedScene" uid="uid://culn6rpto4vjd" path="res://Maps/Level_01.tscn" id="5_qhn4n"]
+[ext_resource type="PackedScene" uid="uid://f61gy2w7un02" path="res://UI/GameOver.tscn" id="7_n76kq"]
 [ext_resource type="PackedScene" uid="uid://cxy63ii7l7wck" path="res://UI/Frontend.tscn" id="7_t46lk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w80xh"]
@@ -34,9 +35,7 @@ shader_parameter/vignette_opacity = 0.033
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_d63cw")
-
-[node name="Level_01" parent="." instance=ExtResource("5_qhn4n")]
-position = Vector2(16, 17)
+LevelGenerateScene = ExtResource("5_qhn4n")
 
 [node name="Character" parent="." instance=ExtResource("1_piqlw")]
 position = Vector2(44, 85)
@@ -68,10 +67,15 @@ grow_vertical = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="GameOver" parent="." instance=ExtResource("7_n76kq")]
+
 [node name="Frontend" parent="." instance=ExtResource("7_t46lk")]
 
 [connection signal="On_Quit_Pressed" from="HUD" to="." method="_on_hud_on_quit_pressed"]
 [connection signal="On_Restart_Pressed" from="HUD" to="." method="_on_hud_on_restart_pressed"]
 [connection signal="On_Resume_Pressed" from="HUD" to="." method="_on_hud_on_resume_pressed"]
+[connection signal="NextMap" from="GameOver" to="." method="_on_game_over_next_map"]
+[connection signal="QuitMap" from="GameOver" to="." method="_on_game_over_quit_map"]
+[connection signal="RetryMap" from="GameOver" to="." method="_on_game_over_retry_map"]
 [connection signal="Quit_Game" from="Frontend" to="." method="_on_frontend_quit_game"]
 [connection signal="Start_Game" from="Frontend" to="." method="_on_frontend_start_game"]

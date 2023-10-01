@@ -19,9 +19,6 @@ var EnablePathDebug : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	load_file(LayoutFileName)
-	InitAStarPath()
-	ProcessData()
 	pass # Replace with function body.
 
 
@@ -57,6 +54,12 @@ func _on_draw():
 #=============================================
 # Map Generation
 #=============================================	
+
+func InitMap(InLevel):
+	LayoutFileName = InLevel
+	load_file(LayoutFileName)
+	InitAStarPath()
+	ProcessData()
 
 func load_file(file):
 	if not FileAccess.file_exists(file):
