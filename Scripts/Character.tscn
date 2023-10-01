@@ -305,6 +305,5 @@ texture_scale = 0.8
 
 [node name="Footsteps" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_1g4hx")
-volume_db = -4.561
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

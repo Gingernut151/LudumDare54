@@ -103,10 +103,10 @@ func ResourceManagement():
 	print(shader_value)
 	$Camera2D/Shader.material.set_shader_parameter("vignette_opacity", shader_value)
 	$Camera2D/Shader.material.set_shader_parameter("vignette_opacity", shader_value)
-	$Footsteps.play()
-	SpawnEnergy()
+
 	
 func SpawnEnergy():
+	$Footsteps.play()
 	if pickedUp == false:
 		var instance = Energy.instantiate()
 		instance.add_to_group("Energy")
@@ -115,6 +115,7 @@ func SpawnEnergy():
 		ResourceManagement()
 	
 	pickedUp = false
+	
 
 func _on_area_entered(area):
 	get_tree().get_root().get_node("World").remove_child(area)
