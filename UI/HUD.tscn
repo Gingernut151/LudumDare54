@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cfxcpfhbd5g1l"]
+[gd_scene load_steps=3 format=3 uid="uid://cfxcpfhbd5g1l"]
 
 [ext_resource type="Script" path="res://UI/HUD.gd" id="1_wqflp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_233jg"]
+font_size = 40
+shadow_size = 15
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -11,9 +15,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wqflp")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Canvas_Ingame" type="CanvasLayer" parent="."]
 
-[node name="DebugPrint" type="TextEdit" parent="CanvasLayer"]
+[node name="DistanceAway" type="TextEdit" parent="Canvas_Ingame"]
 anchors_preset = -1
 anchor_left = 0.04
 anchor_top = 0.044
@@ -25,3 +29,62 @@ offset_right = 357.2
 offset_bottom = 46.48
 text = "default"
 placeholder_text = "Character Location"
+
+[node name="Canvas_Pause" type="CanvasLayer" parent="."]
+
+[node name="Background" type="ColorRect" parent="Canvas_Pause"]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.490196)
+
+[node name="lbl_Paused" type="Label" parent="Canvas_Pause"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.2
+anchor_right = 0.5
+anchor_bottom = 0.2
+grow_horizontal = 2
+text = "Paused"
+label_settings = SubResource("LabelSettings_233jg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="btn_Resume" type="Button" parent="Canvas_Pause"]
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.5
+anchor_right = 0.8
+anchor_bottom = 0.6
+grow_horizontal = 2
+grow_vertical = 2
+text = "Resume"
+
+[node name="btn_Restart" type="Button" parent="Canvas_Pause"]
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.62
+anchor_right = 0.8
+anchor_bottom = 0.72
+grow_horizontal = 2
+grow_vertical = 2
+text = "Restart"
+
+[node name="btn_Quit" type="Button" parent="Canvas_Pause"]
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.74
+anchor_right = 0.8
+anchor_bottom = 0.84
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit
+"
+
+[connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="button_up" from="Canvas_Pause/btn_Resume" to="." method="_on_btn_resume_button_up"]
+[connection signal="button_up" from="Canvas_Pause/btn_Restart" to="." method="_on_btn_restart_button_up"]
+[connection signal="button_up" from="Canvas_Pause/btn_Quit" to="." method="_on_btn_quit_button_up"]

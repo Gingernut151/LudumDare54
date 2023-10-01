@@ -12,6 +12,7 @@ var LevelArray : PackedStringArray
 var MapCellSize : int = 40
 var astarGrid : AStarGrid2D
 var GraveLocation : Vector2i
+var CharacterStartLocation : Vector2i
 var PathStartLoc : Vector2i
 
 var EnablePathDebug : bool = false
@@ -82,6 +83,12 @@ func ProcessData():
 				var Grave_cell = Grave_Scene.instantiate()
 				Grave_cell.set_position(Vector2i(CellPos_X, CellPos_Y))
 				add_child(Grave_cell)
+			elif cell == "o":
+				CharacterStartLocation = Vector2i(CellPos_X, CellPos_Y)
+				astarGrid.set_point_solid(Vector2i(Column_int, row_int), false)	
+				var floor_cell = floor_Scene.instantiate()
+				floor_cell.set_position(Vector2i(CellPos_X, CellPos_Y))
+				add_child(floor_cell)
 				
 			Column_int += 1
 
