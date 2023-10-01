@@ -34,6 +34,9 @@ shader_parameter/vignette_opacity = 0.033
 [node name="World" type="Node2D"]
 script = ExtResource("1_d63cw")
 
+[node name="Level_01" parent="." instance=ExtResource("5_qhn4n")]
+position = Vector2(16, 17)
+
 [node name="Character" parent="." instance=ExtResource("1_piqlw")]
 position = Vector2(44, 85)
 
@@ -63,6 +66,3 @@ grow_horizontal = 1
 grow_vertical = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="Level_01" parent="." instance=ExtResource("5_qhn4n")]
-position = Vector2(16, 17)
