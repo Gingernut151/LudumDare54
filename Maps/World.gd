@@ -8,8 +8,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	$HUD.update_debugtext($Character.get_transform())
-	pass
-
+	var MinimalPathNeeded = $Level_01.GetMinimalPathAmount($Character.get_position());
+	
+	$HUD.update_debugtext(MinimalPathNeeded)
+	$Character.UpdateCellNeededToMove(MinimalPathNeeded)
+	
 	if Input.is_key_pressed(KEY_ESCAPE):
 		get_tree().quit()

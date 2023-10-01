@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://culn6rpto4vjd"]
+[gd_scene load_steps=7 format=3 uid="uid://culn6rpto4vjd"]
 
 [ext_resource type="PackedScene" uid="uid://fpoihfronc6c" path="res://Scripts/Environment/Floor.tscn" id="1_7fvnv"]
 [ext_resource type="Script" path="res://Scripts/GenerateMapLayout.gd" id="1_x5kgm"]
 [ext_resource type="PackedScene" uid="uid://b8wb4uyuvuwmb" path="res://Scripts/Environment/Wall.tscn" id="2_33ou5"]
 [ext_resource type="PackedScene" uid="uid://5nk4nmv7uva2" path="res://Scripts/Environment/Gap.tscn" id="3_1v5si"]
 [ext_resource type="PackedScene" uid="uid://jn1h8nu5ycyf" path="res://Scripts/Environment/Gave.tscn" id="5_0f1gn"]
+[ext_resource type="PackedScene" uid="uid://b8uqydceiutit" path="res://Scripts/Environment/PathDebugPoint.tscn" id="6_hwo0e"]
 
 [node name="Level_01" type="Node2D"]
 script = ExtResource("1_x5kgm")
@@ -12,3 +13,9 @@ floor_Scene = ExtResource("1_7fvnv")
 gap_Scene = ExtResource("3_1v5si")
 wall_Scene = ExtResource("2_33ou5")
 Grave_Scene = ExtResource("5_0f1gn")
+DebugPath_Scene = ExtResource("6_hwo0e")
+
+[node name="Line2D" type="Line2D" parent="."]
+default_color = Color(0, 1, 0, 1)
+
+[connection signal="draw" from="." to="." method="_on_draw"]
