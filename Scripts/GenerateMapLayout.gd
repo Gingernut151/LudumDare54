@@ -97,28 +97,33 @@ func ProcessData():
 				astarGrid.set_point_solid(Vector2i(Column_int, row_int), true)				
 				var gap_cell = gap_Scene.instantiate()
 				gap_cell.set_position(Vector2i(CellPos_X, CellPos_Y))
+				gap_cell.add_to_group("Gap")
 				add_child(gap_cell)
 			elif cell == " ":
 				astarGrid.set_point_solid(Vector2i(Column_int, row_int), false)	
 				var floor_cell = floor_Scene.instantiate()
 				floor_cell.set_position(Vector2i(CellPos_X, CellPos_Y))
+				floor_cell.add_to_group("Floor")
 				add_child(floor_cell)
 			elif cell == "/":
 				astarGrid.set_point_solid(Vector2i(Column_int, row_int), true)
 				var wall_cell = wall_Scene.instantiate()
 				wall_cell.set_position(Vector2i(CellPos_X, CellPos_Y))
+				wall_cell.add_to_group("Wall")
 				add_child(wall_cell)
 			elif cell == "n":
 				astarGrid.set_point_solid(Vector2i(Column_int, row_int), false)	
 				GraveLocation = Vector2i(CellPos_X, CellPos_Y)
 				var Grave_cell = Grave_Scene.instantiate()
 				Grave_cell.set_position(Vector2i(CellPos_X, CellPos_Y))
+				Grave_cell.add_to_group("Grave")
 				add_child(Grave_cell)
 			elif cell == "o":
 				CharacterStartLocation = Vector2i(CellPos_X, CellPos_Y)
 				astarGrid.set_point_solid(Vector2i(Column_int, row_int), false)	
 				var floor_cell = floor_Scene.instantiate()
 				floor_cell.set_position(Vector2i(CellPos_X, CellPos_Y))
+				floor_cell.add_to_group("PlayerSpawn")
 				add_child(floor_cell)
 				
 			Column_int += 1
