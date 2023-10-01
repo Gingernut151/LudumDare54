@@ -21,8 +21,13 @@ func ShowFrontend(InState : bool):
 	
 	if InState:
 		$CanvasLayer.show()
+		$MenuMusic.play()
+		$MenuMusic/AnimationPlayer.play_backwards("MenuMusic")
 	else:
 		$CanvasLayer.hide()
+		$MenuMusic/AnimationPlayer.play("MenuMusic")
+		if !$MenuMusic/AnimationPlayer.is_playing():
+			$MenuMusic.stop()
 
 #=============================================
 # Signals

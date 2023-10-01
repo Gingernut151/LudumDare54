@@ -1,7 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://cxy63ii7l7wck"]
+[gd_scene load_steps=40 format=3 uid="uid://cxy63ii7l7wck"]
 
 [ext_resource type="Script" path="res://UI/Frontend.gd" id="1_js1s7"]
 [ext_resource type="Texture2D" uid="uid://dgtjoqsjtbh5c" path="res://images/SpriteSheets/mon1_sprite_addon_2012_12_14.png" id="2_ui7u0"]
+[ext_resource type="AudioStream" uid="uid://c76u8nqs01wm0" path="res://Audio/telosfangrdesertgrave.ogg" id="3_by8ut"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vmfof"]
 font_size = 50
@@ -261,6 +262,43 @@ animations = [{
 "speed": 16.0
 }]
 
+[sub_resource type="Animation" id="Animation_avonp"]
+resource_name = "MenuMusic"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(2.07053, 1.03527),
+"update": 0,
+"values": [-5.93, -25.0]
+}
+
+[sub_resource type="Animation" id="Animation_yfb2s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-5.93]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l1km4"]
+_data = {
+"MenuMusic": SubResource("Animation_avonp"),
+"RESET": SubResource("Animation_yfb2s")
+}
+
 [node name="Frontend" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -323,6 +361,15 @@ anchor_bottom = 0.92
 grow_horizontal = 2
 grow_vertical = 2
 text = "Quit Game"
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_by8ut")
+volume_db = -5.93
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuMusic"]
+libraries = {
+"": SubResource("AnimationLibrary_l1km4")
+}
 
 [connection signal="pressed" from="CanvasLayer/btn_StartGame" to="." method="_on_btn_start_game_pressed"]
 [connection signal="pressed" from="CanvasLayer/btn_QuitGame" to="." method="_on_btn_quit_game_pressed"]

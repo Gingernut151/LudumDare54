@@ -102,6 +102,9 @@ func ResourceManagement():
 	shader_value += (StanimaVignetePower / CellsNeededToComplete)
 	print(shader_value)
 	$Camera2D/Shader.material.set_shader_parameter("vignette_opacity", shader_value)
+	$Camera2D/Shader.material.set_shader_parameter("vignette_opacity", shader_value)
+	$Footsteps.play()
+	SpawnEnergy()
 	
 func SpawnEnergy():
 	if pickedUp == false:

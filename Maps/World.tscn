@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://culn6rpto4vjd" path="res://Maps/Level_01.tscn" id="5_qhn4n"]
 [ext_resource type="PackedScene" uid="uid://f61gy2w7un02" path="res://UI/GameOver.tscn" id="7_n76kq"]
 [ext_resource type="PackedScene" uid="uid://cxy63ii7l7wck" path="res://UI/Frontend.tscn" id="7_t46lk"]
+[ext_resource type="AudioStream" uid="uid://bk0x2sckoptt4" path="res://Audio/Dark Loop.mp3" id="8_wc531"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w80xh"]
 shader = ExtResource("4_xk0o8")
@@ -70,6 +71,12 @@ size_flags_vertical = 3
 [node name="GameOver" parent="." instance=ExtResource("7_n76kq")]
 
 [node name="Frontend" parent="." instance=ExtResource("7_t46lk")]
+
+[node name="GameMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_wc531")
+volume_db = -1.824
+pitch_scale = 0.8
+autoplay = true
 
 [connection signal="On_Quit_Pressed" from="HUD" to="." method="_on_hud_on_quit_pressed"]
 [connection signal="On_Restart_Pressed" from="HUD" to="." method="_on_hud_on_restart_pressed"]

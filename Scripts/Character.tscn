@@ -1,8 +1,10 @@
-[gd_scene load_steps=37 format=3 uid="uid://1rusvemldfve"]
+[gd_scene load_steps=40 format=3 uid="uid://1rusvemldfve"]
 
 [ext_resource type="Script" path="res://Scripts/Character.gd" id="1_m5tni"]
 [ext_resource type="Texture2D" uid="uid://dgtjoqsjtbh5c" path="res://images/SpriteSheets/mon1_sprite_addon_2012_12_14.png" id="2_12cro"]
 [ext_resource type="Texture2D" uid="uid://cbj0sf54aydan" path="res://images/light.png" id="3_jaq4p"]
+[ext_resource type="AudioStream" uid="uid://big0kh7q20u1g" path="res://Audio/sfx_step_grass_l.mp3" id="4_lwf3c"]
+[ext_resource type="AudioStream" uid="uid://dnp5i5qrba2dx" path="res://Audio/sfx_step_grass_r.mp3" id="5_71idi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdcuq"]
 size = Vector2(26, 29)
@@ -261,6 +263,14 @@ animations = [{
 "speed": 16.0
 }]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1g4hx"]
+streams_count = 2
+playback_mode = 2
+stream_0/stream = ExtResource("4_lwf3c")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("5_71idi")
+stream_1/weight = 1.0
+
 [node name="Character" type="Area2D" groups=["Player"]]
 z_index = 1
 texture_filter = 1
@@ -292,5 +302,9 @@ shadow_filter = 2
 shadow_filter_smooth = 3.5
 texture = ExtResource("3_jaq4p")
 texture_scale = 0.8
+
+[node name="Footsteps" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_1g4hx")
+volume_db = -4.561
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
