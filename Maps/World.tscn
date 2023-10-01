@@ -39,6 +39,7 @@ script = ExtResource("1_d63cw")
 position = Vector2(16, 17)
 
 [node name="Character" parent="." instance=ExtResource("1_piqlw")]
+z_index = 1
 position = Vector2(44, 85)
 
 [node name="Camera2D" type="Camera2D" parent="Character"]
