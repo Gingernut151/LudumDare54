@@ -90,6 +90,7 @@ func setStartPos(InPosition : Vector2):
 	position = position.snapped(Vector2.ONE * tile_size)
 	position += Vector2.ONE * tile_size / 2
 	_animated_sprite.play("idle")
+	shader_value = 0.033
 
 #=============================================
 # Abilities

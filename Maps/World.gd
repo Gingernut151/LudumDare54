@@ -76,6 +76,7 @@ func _on_hud_on_quit_pressed():
 
 func _on_hud_on_restart_pressed():
 	ResetMap()
+	$Character.ResourceManagement()
 	HandlePauseState(false)
 	pass # Replace with function body.
 
