@@ -6,6 +6,11 @@ var tile_size = 40
 var CellsNeededToComplete : int = 0
 var StanimaVignetePower : float = 0.33
 
+	
+var lastPos:= Vector2()
+@export var posOffset:= Vector2()
+var Energy = preload("res://Scripts/Environment/Energy.tscn")
+
 @onready var shader_value = $Camera2D/Shader.material.get_shader_parameter("vignette_opacity")
 
 var inputs = {
@@ -23,6 +28,7 @@ var inputs = {
 @onready var _animated_sprite = $AnimatedSprite2D
 
 func _ready():
+	lastPos = self.position
 	pass
 
 #=============================================
@@ -91,8 +97,15 @@ func setStartPos(InPosition : Vector2):
 
 func ResourceManagement():
 	shader_value += (StanimaVignetePower / CellsNeededToComplete)
-	print(shader_value)
+	#print(shader_value)
 	$Camera2D/Shader.material.set_shader_parameter("vignette_opacity", shader_value)
+	SpawnEnergy()
+	
+func SpawnEnergy():
+	lastPos = self.position
+	var instance = Energy.instantiate()
+	get_tree().get_root().get_node("World").add_child(instance)
+	instance.position = (lastPos + posOffset)
 
 #=============================================
 # UI

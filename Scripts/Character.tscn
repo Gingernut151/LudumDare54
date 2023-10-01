@@ -264,8 +264,9 @@ animations = [{
 [node name="Character" type="Area2D"]
 texture_filter = 1
 position = Vector2(256, 288)
+monitoring = false
 script = ExtResource("1_m5tni")
-posOffset = Vector2(16, 20)
+posOffset = Vector2(16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(16, 16)
