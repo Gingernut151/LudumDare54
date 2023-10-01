@@ -64,6 +64,7 @@ func HandleFrontendShown(inState : bool):
 func HandlePauseState(InState : bool):
 	isPaused = InState
 	$HUD.ShowwPauseMenu(isPaused)
+	$Character.SetMovementState(!InState)
 	
 func HandleGameOverState(InState : bool):
 	isGameOver = InState
