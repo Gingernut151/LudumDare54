@@ -10,3 +10,6 @@ func _ready():
 func _process(delta):
 	$HUD.update_debugtext($Character.get_transform())
 	pass
+
+	if Input.is_key_pressed(KEY_ESCAPE):
+		get_tree().quit()

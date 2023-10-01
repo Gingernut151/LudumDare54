@@ -1,9 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://chlpx4assy44y"]
+[gd_scene load_steps=8 format=3 uid="uid://chlpx4assy44y"]
 
 [ext_resource type="Script" path="res://Maps/World.gd" id="1_d63cw"]
 [ext_resource type="PackedScene" uid="uid://1rusvemldfve" path="res://Scripts/Character.tscn" id="1_piqlw"]
 [ext_resource type="PackedScene" uid="uid://cfxcpfhbd5g1l" path="res://UI/HUD.tscn" id="2_62jf8"]
+[ext_resource type="Texture2D" uid="uid://bhd5sbyxymcru" path="res://icon.svg" id="4_bk3yf"]
+[ext_resource type="Shader" uid="uid://db5l3qj11r7w7" path="res://Developer/CRT_shader.tres" id="4_xk0o8"]
 [ext_resource type="PackedScene" uid="uid://culn6rpto4vjd" path="res://Maps/Level_01.tscn" id="5_qhn4n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w80xh"]
+shader = ExtResource("4_xk0o8")
+shader_parameter/overlay = false
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(1920, 1080)
+shader_parameter/pixelate = true
+shader_parameter/roll = false
+shader_parameter/roll_speed = 0.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 0.1
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 0.5
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 2.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 40.0
+shader_parameter/vignette_opacity = 0.033
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_d63cw")
@@ -14,6 +40,20 @@ position = Vector2(44, 85)
 [node name="Camera2D" type="Camera2D" parent="Character"]
 position = Vector2(16, 16)
 zoom = Vector2(1.5, 1.5)
+
+[node name="Background" type="ColorRect" parent="Character/Camera2D"]
+z_index = -1
+offset_left = -252.0
+offset_top = -293.0
+offset_right = 260.0
+offset_bottom = 283.0
+color = Color(0.146219, 0.0126061, 0.175114, 1)
+
+[node name="Shader" type="Sprite2D" parent="Character/Camera2D"]
+z_index = 1
+material = SubResource("ShaderMaterial_w80xh")
+scale = Vector2(2.73508, 3.12974)
+texture = ExtResource("4_bk3yf")
 
 [node name="HUD" parent="." instance=ExtResource("2_62jf8")]
 anchors_preset = 0
@@ -26,9 +66,3 @@ size_flags_vertical = 3
 
 [node name="Level_01" parent="." instance=ExtResource("5_qhn4n")]
 position = Vector2(16, 17)
-
-[node name="Background" type="ColorRect" parent="."]
-z_index = -1
-offset_right = 512.0
-offset_bottom = 576.0
-color = Color(0.146219, 0.0126061, 0.175114, 1)

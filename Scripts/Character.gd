@@ -3,6 +3,9 @@ extends Area2D
 var animation_speed = 2
 var moving = false
 var tile_size = 40
+
+@onready var shader_value = $Camera2D/Shader.material.get_shader_parameter("vignette_opacity")
+
 var inputs = {
 	"Movement_Right": Vector2.RIGHT,
 	"Movement_Left": Vector2.LEFT,
@@ -13,22 +16,36 @@ var inputs = {
 @onready var ray = $RayCast2D
 @onready var _animated_sprite = $AnimatedSprite2D
 
+
+
 func GetInputDirectionPressed(dir):
 	if inputs[dir] == inputs.Movement_Right:
 		_animated_sprite.play("walk")
 		_animated_sprite.flip_h = false
 		_animated_sprite.rotation_degrees = 0.0
+		ResourceManagement()
+		
 	elif inputs[dir] == inputs.Movement_Left:
 		_animated_sprite.play("walk")
 		_animated_sprite.flip_h = true
 		_animated_sprite.rotation_degrees = 0.0
+		ResourceManagement()
+		
 	elif inputs[dir] == inputs.Movement_Up:
 		_animated_sprite.play("walk")
+		ResourceManagement()
+		
 	elif inputs[dir] == inputs.Movement_Down:
 		_animated_sprite.play("walk")
+		ResourceManagement()
+		
 	else:
 		_animated_sprite.play("idle")
 
+func ResourceManagement():
+	shader_value += (shader_value * 0.2)
+	print(shader_value)
+	$Camera2D/Shader.material.set_shader_parameter("vignette_opacity", shader_value)
 
 func _ready():
 	position = position.snapped(Vector2.ONE * tile_size)
