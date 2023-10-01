@@ -12,6 +12,9 @@ var lastPos:= Vector2()
 var Energy = preload("res://Scripts/Environment/Energy.tscn")
 
 @onready var shader_value = $Camera2D/Shader.material.get_shader_parameter("vignette_opacity")
+@onready var ray = $RayCast2D
+@onready var _animated_sprite = $AnimatedSprite2D
+@onready var pickedUp
 
 var inputs = {
 	"Movement_Right": Vector2.RIGHT,
@@ -24,12 +27,10 @@ var inputs = {
 # Pre Defined
 #=============================================	
 
-@onready var ray = $RayCast2D
-@onready var _animated_sprite = $AnimatedSprite2D
-@onready var pickedUp
+
 
 func _ready():
-	pickedUp = true
+	pickedUp = false
 	lastPos = self.position
 	pass
 
@@ -50,21 +51,17 @@ func GetInputDirectionPressed(dir):
 		_animated_sprite.play("walk")
 		_animated_sprite.flip_h = false
 		_animated_sprite.rotation_degrees = 0.0
-		ResourceManagement()
 		
 	elif inputs[dir] == inputs.Movement_Left:
 		_animated_sprite.play("walk")
 		_animated_sprite.flip_h = true
 		_animated_sprite.rotation_degrees = 0.0
-		ResourceManagement()
 		
 	elif inputs[dir] == inputs.Movement_Up:
 		_animated_sprite.play("walk")
-		ResourceManagement()
 		
 	elif inputs[dir] == inputs.Movement_Down:
 		_animated_sprite.play("walk")
-		ResourceManagement()
 		
 	else:
 		_animated_sprite.play("idle")
@@ -78,6 +75,7 @@ func move(dir):
 	ray.force_raycast_update()
 	if !ray.is_colliding():
 		#position += inputs[dir] * tile_size
+		lastPos = self.position
 		var tween = get_tree().create_tween()
 		tween.tween_property(self, "position", position + inputs[dir] * tile_size, 1.0/animation_speed).set_trans(Tween.TRANS_SINE)
 		moving = true
@@ -86,6 +84,7 @@ func move(dir):
 		await tween.finished
 		moving = false
 		_animated_sprite.play("idle")
+		SpawnEnergy()
 
 func setStartPos(InPosition : Vector2):
 	position = InPosition
@@ -101,18 +100,25 @@ func setStartPos(InPosition : Vector2):
 
 func ResourceManagement():
 	shader_value += (StanimaVignetePower / CellsNeededToComplete)
-	#print(shader_value)
+	print(shader_value)
 	$Camera2D/Shader.material.set_shader_parameter("vignette_opacity", shader_value)
-	SpawnEnergy()
 	
 func SpawnEnergy():
-	if pickedUp == true:
-		lastPos = self.position
+	if pickedUp == false:
 		var instance = Energy.instantiate()
 		instance.add_to_group("Energy")
 		get_tree().get_root().get_node("World").add_child(instance)	
 		instance.position = (lastPos + posOffset)
-	return
+		ResourceManagement()
+	
+	pickedUp = false
+
+func _on_area_entered(area):
+	get_tree().get_root().get_node("World").remove_child(area)
+	shader_value -= (StanimaVignetePower / CellsNeededToComplete)
+	print(shader_value)
+	$Camera2D/Shader.material.set_shader_parameter("vignette_opacity", shader_value)
+	pickedUp = true
 
 #=============================================
 # UI
@@ -121,8 +127,3 @@ func SpawnEnergy():
 func UpdateCellNeededToMove(CellCount):
 	if CellsNeededToComplete == 0:
 		CellsNeededToComplete = CellCount
-
-func _on_area_entered(area):
-	remove_child(area)
-	pickedUp = true
-

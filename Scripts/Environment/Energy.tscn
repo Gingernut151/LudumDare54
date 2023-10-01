@@ -60,7 +60,6 @@ func _ready():
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_varap"]
-radius = 8.06226
 
 [node name="Energy" type="Area2D" groups=["Energy"]]
 collision_layer = 2
@@ -71,10 +70,11 @@ libraries = {
 }
 script = SubResource("GDScript_3do8p")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_varap")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_vvqmq")
 region_enabled = true
 region_rect = Rect2(432, 176, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_varap")
+disabled = true
