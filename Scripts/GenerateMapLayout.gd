@@ -79,7 +79,7 @@ func load_file(file):
 		var line = LevelLayout.get_line()
 		LevelArray.append(line)
 		line += " "
-		print(line + str(index))
+		#print(line + str(index))
 		index += 1
 		
 	LevelLayout.close()
@@ -96,7 +96,7 @@ func load_file(file):
 		var line = GraveTexts.get_line()
 		GraveTextArray.append(line)
 		line += " "
-		print(line + str(index))
+		#print(line + str(index))
 		index += 1
 		
 	GraveTexts.close()
@@ -158,14 +158,11 @@ func UpdateAllGraveTexts():
 	var desired_children = []
 	desired_children = get_tree().get_nodes_in_group("Graves")
 	
-	var graveIndex : int = 0;
-	
-	var TextPartIndex = 1;
 	var GraveName : String
 	var GraveRiddle : PackedStringArray
-	var GraveStone : String
+	var GraveStone : String	
 	
-
+	var TextPartIndex = 1;
 	var CurrentGraveText : int = 0
 	var UsedGraves : String = ""
 	
@@ -177,6 +174,7 @@ func UpdateAllGraveTexts():
 			GraveToUse = randi_range(0,6)
 		
 		UsedGraves += str(GraveToUse)
+		#print(UsedGraves)
 		CurrentGraveText = 0
 		TextPartIndex = 1
 		GraveName = ""
@@ -196,7 +194,7 @@ func UpdateAllGraveTexts():
 				if TextPartIndex == 4:
 									
 					if CurrentGraveText == GraveToUse:
-						Child.SetGraveWritting(GraveName, GraveRiddle, GraveStone)
+						Child.SetGraveWritting(GraveName, GraveRiddle.duplicate(), GraveStone)
 						isFound = true
 						continue
 						
@@ -216,6 +214,11 @@ func UpdateAllGraveTexts():
 				
 	var FindGraveIndex : int = randi_range(0, (desired_children.size() - 1))
 	CurrentGraveToFind = desired_children[FindGraveIndex]
+	
+	#for Child in desired_children:
+		#print(Child.GraveName)
+		#print(Child.GraveRiddle)
+		#print(Child.GraveStone)
 
 #=============================================
 # A Star Pathing setup

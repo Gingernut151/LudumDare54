@@ -82,6 +82,11 @@ func HandleObjectiveShownState(InState : bool):
 	$Objective.ShowObjectiveScreen(InState, CurrentLevelMap.CurrentGraveToFind)
 	$Character.SetMovementState(!InState)
 	$Character.show()
+	
+	#print(CurrentLevelMap.CurrentGraveToFind.GraveName)
+	#print(CurrentLevelMap.CurrentGraveToFind.GraveRiddle)
+	#print(CurrentLevelMap.CurrentGraveToFind.GraveStone)
+	
 
 func OnGraveHit(IsEntered : bool, InWriting : String):
 	$HUD.ShowGraveWriting(true, InWriting)
