@@ -25,6 +25,7 @@ script = ExtResource("1_wqflp")
 [node name="Canvas_Ingame" type="CanvasLayer" parent="."]
 
 [node name="DistanceAway" type="Label" parent="Canvas_Ingame"]
+visible = false
 anchors_preset = -1
 anchor_left = 0.04
 anchor_top = 0.044
