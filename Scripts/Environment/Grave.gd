@@ -1,6 +1,8 @@
 extends Area2D
 
-var GraveWriting : String = ""
+var GraveName : String
+var GraveRiddle : PackedStringArray
+var GraveStone : String
 
 var inArea : bool = false
 
@@ -22,18 +24,17 @@ func _process(delta):
 #		var OwnerNode = get_node("/root/World")
 #		OwnerNode.HandleGameOverState(true)	
 
-func SetGraveWritting(InWritting):
-	GraveWriting = InWritting
+func SetGraveWritting(InGraveName, InGraveRiddle, InGraveStone):
+	GraveName = InGraveName
+	GraveRiddle = InGraveRiddle
+	GraveStone = InGraveStone
 	
 func GetNameOnGrave():
-	var SplitString : PackedStringArray = GraveWriting.split(";")
-	var SplitLeftString : PackedStringArray = SplitString[0].split(" ")
-	var NameString : String = SplitLeftString[SplitLeftString.size()-1]
-	return NameString
+	return GraveName
 
 func _on_interact():
 	var OwnerNode = get_node("/root/World")
-	OwnerNode.OnGraveHit(true, GraveWriting)
+	OwnerNode.OnGraveHit(true, GraveStone)
 	print("Grave Read")
 	
 func _on_interact_Dig():

@@ -29,14 +29,12 @@ color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.3
-anchor_right = 0.5
-anchor_bottom = 0.3
-offset_left = -198.5
-offset_top = -45.0
-offset_right = 198.5
-offset_bottom = 45.0
+anchor_left = 0.073
+anchor_top = 0.08
+anchor_right = 0.927
+anchor_bottom = 0.351
+offset_left = 0.123997
+offset_right = -0.124023
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_oqkdk")
@@ -45,46 +43,22 @@ label_settings = SubResource("LabelSettings_clkbw")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.45
+anchor_right = 0.8
+anchor_bottom = 0.7
+
 [node name="btn_Resume" type="Button" parent="CanvasLayer"]
 anchors_preset = -1
 anchor_left = 0.2
-anchor_top = 0.5
+anchor_top = 0.8
 anchor_right = 0.8
-anchor_bottom = 0.6
+anchor_bottom = 0.9
 grow_horizontal = 2
 grow_vertical = 2
-focus_neighbor_bottom = NodePath("../btn_Restart")
 theme = ExtResource("2_oqkdk")
 text = "Start Raid"
 
-[node name="btn_Restart" type="Button" parent="CanvasLayer"]
-visible = false
-anchors_preset = -1
-anchor_left = 0.2
-anchor_top = 0.62
-anchor_right = 0.8
-anchor_bottom = 0.72
-grow_horizontal = 2
-grow_vertical = 2
-focus_neighbor_top = NodePath("../btn_Resume")
-focus_neighbor_bottom = NodePath("../btn_Quit")
-theme = ExtResource("2_oqkdk")
-text = "Retry"
-
-[node name="btn_Quit" type="Button" parent="CanvasLayer"]
-visible = false
-anchors_preset = -1
-anchor_left = 0.2
-anchor_top = 0.74
-anchor_right = 0.8
-anchor_bottom = 0.84
-grow_horizontal = 2
-grow_vertical = 2
-focus_neighbor_top = NodePath("../btn_Restart")
-theme = ExtResource("2_oqkdk")
-text = "Quit
-"
-
 [connection signal="pressed" from="CanvasLayer/btn_Resume" to="." method="_on_btn_resume_pressed"]
-[connection signal="button_up" from="CanvasLayer/btn_Restart" to="." method="_on_btn_restart_button_up"]
-[connection signal="button_up" from="CanvasLayer/btn_Quit" to="." method="_on_btn_quit_button_up"]

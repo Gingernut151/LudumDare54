@@ -77,7 +77,7 @@ func HandleGameOverState(InState : bool):
 func HandleObjectiveShownState(InState : bool):
 	isGameOver = InState
 	$HUD.ShowwInGameHUD(!InState)
-	$Objective.ShowObjectiveScreen(InState, CurrentLevelMap.CurrentGraveToFind.GetNameOnGrave())
+	$Objective.ShowObjectiveScreen(InState, CurrentLevelMap.CurrentGraveToFind)
 	$Character.SetMovementState(!InState)
 	$Character.show()
 

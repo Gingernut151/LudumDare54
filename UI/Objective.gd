@@ -1,6 +1,6 @@
 extends Control
 
-var Grave_Name : String
+var Grave
 
 signal StartLevel
 
@@ -21,8 +21,8 @@ func _process(delta):
 # General
 #=============================================	
 
-func ShowObjectiveScreen(ShouldShow : bool, InName : String):
-	Grave_Name = InName
+func ShowObjectiveScreen(ShouldShow : bool, InGrave):
+	Grave = InGrave
 	
 	if ShouldShow:
 		$CanvasLayer/btn_Resume.grab_focus()
@@ -31,9 +31,23 @@ func ShowObjectiveScreen(ShouldShow : bool, InName : String):
 		The clue to unveil, 
 		the tomb to invade,
 		Lies within the riddle, 
-		in words we've laid. " + Grave_Name
+		in words we've laid.
+		 "
+		
+		for line in InGrave.GraveRiddle:
+			var NewLine = Label.new()
+			NewLine.text = line
+			NewLine.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+			NewLine.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			#NewLine.theme = "res://UI/new_theme.tres"
+			$CanvasLayer/VBoxContainer.add_child(NewLine)
+		
+		
 	else:
 		$CanvasLayer.hide()
+		
+		for child in $CanvasLayer/VBoxContainer.get_children():
+			$CanvasLayer/VBoxContainer.remove_child(child)
 
 #=============================================
 # Signal
