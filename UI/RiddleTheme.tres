@@ -1,0 +1,21 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://rj16afodvu08"]
+
+[ext_resource type="FontFile" uid="uid://c6mbdb5sff3yc" path="res://UI/alagard_by_pix3m-d6awiwp.ttf" id="1_mapab"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wt6vs"]
+bg_color = Color(0.996094, 0.996094, 0.996094, 1)
+border_width_bottom = 5
+border_color = Color(0.417969, 0.417969, 0.417969, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(1, 1, 1, 0.6)
+
+[resource]
+default_font = ExtResource("1_mapab")
+default_font_size = 20
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/font_sizes/font_size = 10
+Button/styles/normal = SubResource("StyleBoxFlat_wt6vs")
