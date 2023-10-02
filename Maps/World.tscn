@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://chlpx4assy44y"]
+[gd_scene load_steps=12 format=3 uid="uid://chlpx4assy44y"]
 
 [ext_resource type="Script" path="res://Maps/World.gd" id="1_d63cw"]
 [ext_resource type="PackedScene" uid="uid://1rusvemldfve" path="res://Scripts/Character.tscn" id="1_piqlw"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bhd5sbyxymcru" path="res://icon.svg" id="4_bk3yf"]
 [ext_resource type="Shader" uid="uid://db5l3qj11r7w7" path="res://Developer/CRT_shader.tres" id="4_xk0o8"]
 [ext_resource type="PackedScene" uid="uid://culn6rpto4vjd" path="res://Maps/Level_01.tscn" id="5_qhn4n"]
+[ext_resource type="Theme" uid="uid://b5ryibku343xc" path="res://UI/new_theme.tres" id="7_0hkss"]
 [ext_resource type="PackedScene" uid="uid://f61gy2w7un02" path="res://UI/GameOver.tscn" id="7_n76kq"]
 [ext_resource type="PackedScene" uid="uid://cxy63ii7l7wck" path="res://UI/Frontend.tscn" id="7_t46lk"]
 [ext_resource type="AudioStream" uid="uid://bk0x2sckoptt4" path="res://Audio/Dark Loop.mp3" id="8_wc531"]
@@ -69,6 +70,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="GameOver" parent="." instance=ExtResource("7_n76kq")]
+theme = ExtResource("7_0hkss")
 
 [node name="Frontend" parent="." instance=ExtResource("7_t46lk")]
 

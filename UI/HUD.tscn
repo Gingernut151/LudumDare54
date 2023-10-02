@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfxcpfhbd5g1l"]
+[gd_scene load_steps=5 format=3 uid="uid://cfxcpfhbd5g1l"]
 
 [ext_resource type="Script" path="res://UI/HUD.gd" id="1_wqflp"]
+[ext_resource type="Theme" uid="uid://b5ryibku343xc" path="res://UI/new_theme.tres" id="1_y17v7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gv272"]
 font_size = 25
@@ -17,6 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_y17v7")
 script = ExtResource("1_wqflp")
 
 [node name="Canvas_Ingame" type="CanvasLayer" parent="."]
@@ -41,6 +43,7 @@ anchor_right = 0.8
 anchor_bottom = 0.9
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("1_y17v7")
 label_settings = SubResource("LabelSettings_gv272")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -64,6 +67,7 @@ anchor_top = 0.2
 anchor_right = 0.5
 anchor_bottom = 0.2
 grow_horizontal = 2
+theme = ExtResource("1_y17v7")
 text = "Paused"
 label_settings = SubResource("LabelSettings_233jg")
 horizontal_alignment = 1
@@ -77,6 +81,7 @@ anchor_right = 0.8
 anchor_bottom = 0.6
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_y17v7")
 text = "Resume"
 
 [node name="btn_Restart" type="Button" parent="Canvas_Pause"]
@@ -87,6 +92,7 @@ anchor_right = 0.8
 anchor_bottom = 0.72
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_y17v7")
 text = "Restart"
 
 [node name="btn_Quit" type="Button" parent="Canvas_Pause"]
@@ -97,6 +103,7 @@ anchor_right = 0.8
 anchor_bottom = 0.84
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_y17v7")
 text = "Quit
 "
 

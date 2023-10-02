@@ -11,7 +11,7 @@ atlas = ExtResource("1_na7s5")
 region = Rect2(160, 144, 16, 16)
 
 [node name="Grave" type="Area2D"]
-collision_mask = 2
+collision_layer = 2
 script = ExtResource("1_pff2d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

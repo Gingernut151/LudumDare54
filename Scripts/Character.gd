@@ -37,7 +37,7 @@ func _ready():
 	pass
 
 func _process(delta):
-	if shader_value > 0.1 && alive: #this number needs changing to match the level, more like a percent rather then hardcoded.
+	if shader_value > 1 && alive: #this number needs changing to match the level, more like a percent rather then hardcoded.
 		alive = false
 		CanMove = false
 		_animated_sprite.play("dead")

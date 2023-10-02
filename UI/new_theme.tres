@@ -1,4 +1,6 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b5ryibku343xc"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://b5ryibku343xc"]
+
+[ext_resource type="FontFile" uid="uid://c6mbdb5sff3yc" path="res://UI/alagard_by_pix3m-d6awiwp.ttf" id="1_5heun"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wt6vs"]
 bg_color = Color(0.996094, 0.996094, 0.996094, 1)
@@ -11,5 +13,8 @@ corner_radius_bottom_left = 3
 shadow_color = Color(1, 1, 1, 0.6)
 
 [resource]
+default_font = ExtResource("1_5heun")
+default_font_size = 30
 Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
 Button/styles/normal = SubResource("StyleBoxFlat_wt6vs")
