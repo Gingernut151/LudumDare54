@@ -1,28 +1,33 @@
-[gd_scene load_steps=5 format=3 uid="uid://jn1h8nu5ycyf"]
+[gd_scene load_steps=6 format=3 uid="uid://jn1h8nu5ycyf"]
 
 [ext_resource type="Texture2D" uid="uid://cg335wvg271av" path="res://images/SpriteSheets/monochrome-transparent_packed.png" id="1_na7s5"]
 [ext_resource type="Script" path="res://Scripts/Environment/Grave.gd" id="1_pff2d"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oxqi2"]
-size = Vector2(40, 40)
+[ext_resource type="PackedScene" uid="uid://bv66cg0266egs" path="res://Interaction/Interaction Area/interaction_area.tscn" id="3_l0j7d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2jr2p"]
 atlas = ExtResource("1_na7s5")
 region = Rect2(160, 144, 16, 16)
 
-[node name="Grave" type="Area2D"]
-collision_layer = 2
-script = ExtResource("1_pff2d")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oxqi2"]
+size = Vector2(40, 40)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visibility_layer = 2
-position = Vector2(20, 20)
-shape = SubResource("RectangleShape2D_oxqi2")
+[node name="Grave" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_pff2d")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(20, 20)
 scale = Vector2(2.5, 2.5)
 texture = SubResource("AtlasTexture_2jr2p")
+
+[node name="interaction_area" parent="." instance=ExtResource("3_l0j7d")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_area"]
+visibility_layer = 2
+position = Vector2(20, 20)
+scale = Vector2(2.14394, 2.25071)
+shape = SubResource("RectangleShape2D_oxqi2")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
