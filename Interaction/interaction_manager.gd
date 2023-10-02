@@ -8,7 +8,7 @@ const base_text = "[E] or (A) to "
 const Dig_text = "[R] or (X) to "
 
 var active_areas = []
-var can_interact = true
+@export var can_interact = true
 
 
 func register_area(area: InteractionArea):

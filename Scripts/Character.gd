@@ -38,7 +38,7 @@ func _ready():
 	pass
 
 func _process(delta):
-	if shader_value > 0.4 && alive && CanMove: #this number needs changing to match the level, more like a percent rather then hardcoded.
+	if shader_value > 1 && alive && CanMove: #this number needs changing to match the level, more like a percent rather then hardcoded.
 		alive = false
 		CanMove = false
 		_animated_sprite.play("dead")
@@ -136,8 +136,13 @@ func SpawnEnergy():
 	pickedUp = false
 
 func End_Vignette():
-	while shader_value < 1.0:
-		ResourceManagement()
+	var tween = get_tree().create_tween();
+	tween.tween_method(set_shader_value,shader_value, 1.5, 2)
+	
+
+func set_shader_value(value: float):
+	$Camera2D/Shader.material.set_shader_parameter("vignette_opacity", value)
+
 
 func _on_area_entered(area):
 	get_tree().get_root().get_node("World").remove_child(area)
