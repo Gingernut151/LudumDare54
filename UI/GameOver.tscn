@@ -43,6 +43,7 @@ anchor_right = 0.8
 anchor_bottom = 0.6
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_bottom = NodePath("../btn_Restart")
 text = "Next Grave"
 
 [node name="btn_Restart" type="Button" parent="CanvasLayer"]
@@ -53,6 +54,8 @@ anchor_right = 0.8
 anchor_bottom = 0.72
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_top = NodePath("../btn_Resume")
+focus_neighbor_bottom = NodePath("../btn_Quit")
 text = "Retry"
 
 [node name="btn_Quit" type="Button" parent="CanvasLayer"]
@@ -63,6 +66,7 @@ anchor_right = 0.8
 anchor_bottom = 0.84
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_top = NodePath("../btn_Restart")
 text = "Quit
 "
 

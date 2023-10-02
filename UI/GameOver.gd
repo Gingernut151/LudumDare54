@@ -17,6 +17,7 @@ func _process(delta):
 func ShowwGameOverMenu(InState : bool):
 	if InState:
 		$CanvasLayer.show()
+		$CanvasLayer/btn_Resume.grab_focus()
 	else:
 		$CanvasLayer.hide()
 

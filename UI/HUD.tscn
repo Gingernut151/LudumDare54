@@ -81,6 +81,7 @@ anchor_right = 0.8
 anchor_bottom = 0.6
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_bottom = NodePath("../btn_Restart")
 theme = ExtResource("1_y17v7")
 text = "Resume"
 
@@ -92,6 +93,8 @@ anchor_right = 0.8
 anchor_bottom = 0.72
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_top = NodePath("../btn_Resume")
+focus_neighbor_bottom = NodePath("../btn_Quit")
 theme = ExtResource("1_y17v7")
 text = "Restart"
 
@@ -103,6 +106,7 @@ anchor_right = 0.8
 anchor_bottom = 0.84
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_top = NodePath("../btn_Restart")
 theme = ExtResource("1_y17v7")
 text = "Quit
 "

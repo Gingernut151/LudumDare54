@@ -23,6 +23,7 @@ func ShowFrontend(InState : bool):
 		$CanvasLayer.show()
 		$MenuMusic.play()
 		$MenuMusic/AnimationPlayer.play_backwards("MenuMusic")
+		$CanvasLayer/btn_StartGame.grab_focus()
 	else:
 		$CanvasLayer.hide()
 		$MenuMusic/AnimationPlayer.play("MenuMusic")

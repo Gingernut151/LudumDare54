@@ -354,6 +354,7 @@ anchor_right = 0.8
 anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_bottom = NodePath("../btn_QuitGame")
 theme = ExtResource("1_awhf5")
 text = "Start"
 
@@ -365,6 +366,7 @@ anchor_right = 0.8
 anchor_bottom = 0.92
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_top = NodePath("../btn_StartGame")
 theme = ExtResource("1_awhf5")
 text = "Quit"
 

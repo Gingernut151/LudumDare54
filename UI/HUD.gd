@@ -40,6 +40,7 @@ func ShowwPauseMenu(InState : bool):
 	if InState:
 		ShowwInGameHUD(false)
 		$Canvas_Pause.show()
+		$Canvas_Pause/btn_Resume.grab_focus()
 	else:
 		ShowwInGameHUD(true)
 		$Canvas_Pause.hide()
