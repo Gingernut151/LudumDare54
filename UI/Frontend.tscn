@@ -1,5 +1,6 @@
-[gd_scene load_steps=40 format=3 uid="uid://cxy63ii7l7wck"]
+[gd_scene load_steps=41 format=3 uid="uid://cxy63ii7l7wck"]
 
+[ext_resource type="Theme" uid="uid://b5ryibku343xc" path="res://UI/new_theme.tres" id="1_awhf5"]
 [ext_resource type="Script" path="res://UI/Frontend.gd" id="1_js1s7"]
 [ext_resource type="Texture2D" uid="uid://dgtjoqsjtbh5c" path="res://images/SpriteSheets/mon1_sprite_addon_2012_12_14.png" id="2_ui7u0"]
 [ext_resource type="AudioStream" uid="uid://c76u8nqs01wm0" path="res://Audio/telosfangrdesertgrave.ogg" id="3_by8ut"]
@@ -306,6 +307,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_awhf5")
 script = ExtResource("1_js1s7")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -350,6 +352,7 @@ anchor_right = 0.8
 anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_awhf5")
 text = "Start Game"
 
 [node name="btn_QuitGame" type="Button" parent="CanvasLayer"]
@@ -360,6 +363,7 @@ anchor_right = 0.8
 anchor_bottom = 0.92
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_awhf5")
 text = "Quit Game"
 
 [node name="MenuMusic" type="AudioStreamPlayer" parent="."]

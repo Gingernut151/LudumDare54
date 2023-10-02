@@ -8,6 +8,7 @@ var CurrentMapIndex : int = 1
 @export var LevelGenerateScene: PackedScene
 var CurrentLevelMap : Node2D
 
+
 var LevelLayouts = {
 	1: "res://Maps/Layouts/Level_01.txt",
 	2: "res://Maps/Layouts/Level_02.txt",
@@ -23,6 +24,8 @@ var LevelLayouts = {
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	HandleFrontendShown(true)
+	$Character.endGame.connect(_on_game_over_retry_map)
+	
 	pass # Replace with function body.
 
 
@@ -80,6 +83,7 @@ func GetLevelToUse():
 
 func ResetMap():
 	$Character.setStartPos(CurrentLevelMap.CharacterStartLocation)
+	$Character.alive = true
 	var desired_children = []
 	desired_children = get_tree().get_nodes_in_group("Energy")
 	

@@ -7,6 +7,8 @@ var CellsNeededToComplete : int = 0
 var StanimaVignetePower : float = 0.33
 var CanMove : bool = false
 
+signal endGame
+
 	
 var lastPos:= Vector2()
 @export var posOffset:= Vector2()
@@ -16,6 +18,7 @@ var Energy = preload("res://Scripts/Environment/Energy.tscn")
 @onready var ray = $RayCast2D
 @onready var _animated_sprite = $AnimatedSprite2D
 @onready var pickedUp
+@onready var alive : bool = true
 
 var inputs = {
 	"Movement_Right": Vector2.RIGHT,
@@ -33,6 +36,13 @@ func _ready():
 	lastPos = self.position
 	pass
 
+func _process(delta):
+	if shader_value > 0.1 && alive: #this number needs changing to match the level, more like a percent rather then hardcoded.
+		alive = false
+		CanMove = false
+		_animated_sprite.play("dead")
+		_animated_sprite.connect("animation_finished", On_Anim_Finished)
+		
 #=============================================
 # Input
 #=============================================	
@@ -106,7 +116,9 @@ func ResourceManagement():
 	$Camera2D/Shader.material.set_shader_parameter("vignette_opacity", shader_value)
 	$Camera2D/Shader.material.set_shader_parameter("vignette_opacity", shader_value)
 
-	
+func On_Anim_Finished():
+	endGame.emit()
+
 func SpawnEnergy():
 	$Footsteps.play()
 	if pickedUp == false:
