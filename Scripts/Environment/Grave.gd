@@ -4,6 +4,8 @@ var GraveWriting : String = ""
 
 var inArea : bool = false
 
+signal GraveDug
+
 @onready var interaction_area: InteractionArea = $interaction_area
 
 # Called when the node enters the scene tree for the first time.
@@ -21,26 +23,29 @@ func _process(delta):
 
 func SetGraveWritting(InWritting):
 	GraveWriting = InWritting
+	
+func GetNameOnGrave():
+	var SplitString : PackedStringArray = GraveWriting.split(";")
+	var SplitLeftString : PackedStringArray = SplitString[0].split(" ")
+	var NameString : String = SplitLeftString[SplitLeftString.size()-1]
+	return NameString
 
 func _on_interact():
 	var OwnerNode = get_node("/root/World")
 	OwnerNode.OnGraveHit(true, GraveWriting)
-	print("hit")
+	print("Grave Read")
 
-
-
-
-#func _on_area_entered(area):
-#	var OwnerNode = get_node("/root/World")
-#	OwnerNode.OnGraveHit(true, GraveWriting)
-#	inArea = true
-#	print(inArea)
+func _on_area_entered(area):
+	var OwnerNode = get_node("/root/World")
+	
+	if OwnerNode:
+		OwnerNode.OnGraveDug(self)
+	inArea = true
+	print("in Grave")
 #
-#func _on_area_exited(area):
-#	var OwnerNode = get_node("/root/World")
-#	OwnerNode.OnGraveHit(false, "")
-#	inArea = false
-#	print(inArea)
+func _on_area_exited(area):
+	inArea = false
+	print("Out Grave")
 
 #func _on_input_event(viewport, event, shape_idx):
 #	var OwnerNode = get_node("/root/World")

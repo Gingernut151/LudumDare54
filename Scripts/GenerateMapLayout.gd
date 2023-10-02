@@ -17,6 +17,8 @@ var GraveLocation : Vector2i
 var CharacterStartLocation : Vector2i
 var PathStartLoc : Vector2i
 
+var CurrentGraveToFind
+
 var EnablePathDebug : bool = false
 
 # Called when the node enters the scene tree for the first time.
@@ -160,6 +162,10 @@ func UpdateAllGraveTexts():
 		var graveIndex : int = randi_range(0, 6)
 		var FoundText : String = GraveTextArray[graveIndex]
 		child.SetGraveWritting(FoundText)
+	
+	var FindGraveIndex : int = randi_range(0, (desired_children.size() - 1))
+	CurrentGraveToFind = desired_children[FindGraveIndex]
+	
 
 #=============================================
 # A Star Pathing setup
