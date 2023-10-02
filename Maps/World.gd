@@ -91,6 +91,7 @@ func OnGraveDug(GraveDug):
 		GraveDug.DigHole(true)
 		$Character.SetMovementState(false)
 		$Character.End_Vignette()
+		$HUD
 		await get_tree().create_timer(2).timeout
 		CurrentMapIndex += 1
 		SetMapLive(CurrentMapIndex)

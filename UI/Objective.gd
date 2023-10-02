@@ -39,7 +39,6 @@ func ShowObjectiveScreen(ShouldShow : bool, InGrave):
 			NewLine.text = line
 			NewLine.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 			NewLine.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-			#NewLine.theme = "res://UI/new_theme.tres"
 			$CanvasLayer/VBoxContainer.add_child(NewLine)
 		
 		
