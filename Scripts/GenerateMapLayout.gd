@@ -165,32 +165,46 @@ func UpdateAllGraveTexts():
 	var GraveRiddle : PackedStringArray
 	var GraveStone : String
 	
-	for line in GraveTextArray:
+
+	var CurrentGraveText : int = 0
+	var UsedGraves : String = ""
+	
+	for Child in desired_children:
 		
-		if line == ";":
-			TextPartIndex += 1
+		var GraveToUse : int = randi_range(0,6)
+		
+		while UsedGraves.contains(str(GraveToUse)):
+			GraveToUse = randi_range(0,6)
+		
+		UsedGraves += str(GraveToUse)
+		CurrentGraveText = 0
+	
+		for line in GraveTextArray:
 			
-			if TextPartIndex == 4:
+			if line == ";":
+				TextPartIndex += 1
 				
-				if graveIndex == desired_children.size():
-					var FindGraveIndex : int = randi_range(0, (desired_children.size() - 1))
-					CurrentGraveToFind = desired_children[FindGraveIndex]
-					return
-					
-				desired_children[graveIndex].SetGraveWritting(GraveName, GraveRiddle, GraveStone)
-				TextPartIndex = 1
-				GraveName = ""
-				GraveRiddle.clear()
-				GraveStone = ""
-				graveIndex += 1
-			
-		else:
-			if TextPartIndex == 1:
-				GraveName = line
-			elif TextPartIndex == 2:
-				GraveRiddle.append(line)
+				if TextPartIndex == 4:
+									
+					if CurrentGraveText == GraveToUse:
+						Child.SetGraveWritting(GraveName, GraveRiddle, GraveStone)
+						
+					TextPartIndex = 1
+					GraveName = ""
+					GraveRiddle.clear()
+					GraveStone = ""
+					CurrentGraveText += 1
+				
 			else:
-				GraveStone = line
+				if TextPartIndex == 1:
+					GraveName = line
+				elif TextPartIndex == 2:
+					GraveRiddle.append(line)
+				else:
+					GraveStone = line
+				
+	var FindGraveIndex : int = randi_range(0, (desired_children.size() - 1))
+	CurrentGraveToFind = desired_children[FindGraveIndex]
 
 #=============================================
 # A Star Pathing setup
