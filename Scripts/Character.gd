@@ -6,6 +6,7 @@ var tile_size = 40
 var CellsNeededToComplete : int = 0
 var StanimaVignetePower : float = 0.33
 var CanMove : bool = false
+var IsEndVignette : bool = false
 
 signal endGame
 
@@ -37,11 +38,14 @@ func _ready():
 	pass
 
 func _process(delta):
-	if shader_value > 0.4 && alive: #this number needs changing to match the level, more like a percent rather then hardcoded.
+	if shader_value > 0.4 && alive && CanMove: #this number needs changing to match the level, more like a percent rather then hardcoded.
 		alive = false
 		CanMove = false
 		_animated_sprite.play("dead")
 		_animated_sprite.connect("animation_finished", On_Anim_Finished)
+	
+	if IsEndVignette:
+		ResourceManagement()
 		
 #=============================================
 # Input
@@ -104,6 +108,7 @@ func setStartPos(InPosition : Vector2):
 	position += Vector2.ONE * tile_size / 2
 	_animated_sprite.play("idle")
 	shader_value = 0.033
+	IsEndVignette = false
 	
 
 #=============================================
@@ -129,7 +134,10 @@ func SpawnEnergy():
 		ResourceManagement()
 	
 	pickedUp = false
-	
+
+func End_Vignette():
+	while shader_value < 1.0:
+		ResourceManagement()
 
 func _on_area_entered(area):
 	get_tree().get_root().get_node("World").remove_child(area)

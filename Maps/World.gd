@@ -88,10 +88,16 @@ func OnGraveHit(IsEntered : bool, InWriting : String):
 	
 func OnGraveDug(GraveDug):
 	if CurrentLevelMap.CurrentGraveToFind == GraveDug:
+		GraveDug.DigHole(true)
+		$Character.SetMovementState(false)
+		$Character.End_Vignette()
+		await get_tree().create_timer(2).timeout
 		CurrentMapIndex += 1
 		SetMapLive(CurrentMapIndex)
 		ResetMap()
 		HandleObjectiveShownState(true)
+	else:
+		GraveDug.DigHole(false)
 
 func GetLevelToUse():
 	return LevelLayouts

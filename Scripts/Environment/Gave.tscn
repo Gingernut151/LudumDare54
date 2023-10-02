@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://jn1h8nu5ycyf"]
+[gd_scene load_steps=9 format=3 uid="uid://jn1h8nu5ycyf"]
 
 [ext_resource type="Texture2D" uid="uid://cg335wvg271av" path="res://images/SpriteSheets/monochrome-transparent_packed.png" id="1_na7s5"]
 [ext_resource type="Script" path="res://Scripts/Environment/Grave.gd" id="1_pff2d"]
@@ -6,7 +6,15 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2jr2p"]
 atlas = ExtResource("1_na7s5")
-region = Rect2(160, 144, 16, 16)
+region = Rect2(-0.0139923, 144.292, 15.8869, 16.1046)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dj0w8"]
+atlas = ExtResource("1_na7s5")
+region = Rect2(305.106, 256.54, 13.7833, 15.4049)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uk5ia"]
+atlas = ExtResource("1_na7s5")
+region = Rect2(305.386, 288.631, 13.2428, 14.9995)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oxqi2"]
 size = Vector2(40, 40)
@@ -22,6 +30,18 @@ script = ExtResource("1_pff2d")
 position = Vector2(20, 20)
 scale = Vector2(2.5, 2.5)
 texture = SubResource("AtlasTexture_2jr2p")
+
+[node name="Grave_Hole" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(20, 20)
+scale = Vector2(2.5, 2.5)
+texture = SubResource("AtlasTexture_dj0w8")
+
+[node name="Grave_Empty" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(20, 20)
+scale = Vector2(2.5, 2.5)
+texture = SubResource("AtlasTexture_uk5ia")
 
 [node name="interaction_area" parent="." instance=ExtResource("3_l0j7d")]
 collision_layer = 2

@@ -4,8 +4,8 @@ extends Node2D
 @onready var label = $Label
 
 
-const base_text = "[Space Bar] to "
-
+const base_text = "[E] or (A) to "
+const Dig_text = "[R] or (X) to "
 
 var active_areas = []
 var can_interact = true
@@ -27,12 +27,17 @@ func _process(delta):
 	if active_areas.size() > 0 && can_interact:
 		active_areas.sort_custom(_sort_by_distance_to_player)
 		label.text = base_text + active_areas[0].action_name
+		$Label_Dig.text = Dig_text + active_areas[0].Dig_name
 		label.global_position = active_areas[0].global_position
-		label.global_position.y -= 26
+		label.global_position.y -= 50
 		label.global_position.x -= label.size.x / 2 - 12
+		$Label_Dig.global_position = label.global_position
+		$Label_Dig.global_position.y += 26
 		label.show()
+		$Label_Dig.show()
 	else:
 		label.hide()
+		$Label_Dig.hide()
 		
 		
 func _sort_by_distance_to_player(area1, area2):
@@ -46,7 +51,18 @@ func _input(event):
 		if active_areas.size() > 0:
 			can_interact = false
 			label.hide()
+			$Label_Dig.hide()
 			
 			await active_areas[0].interact.call()
+			
+			can_interact = true
+			
+	if event.is_action_pressed("Dig") && can_interact:
+		if active_areas.size() > 0:
+			can_interact = false
+			label.hide()
+			$Label_Dig.hide()
+			
+			await active_areas[0].interact_dig.call()
 			
 			can_interact = true
