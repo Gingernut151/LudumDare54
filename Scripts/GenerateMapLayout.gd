@@ -157,7 +157,7 @@ func UpdateAllGraveTexts():
 	desired_children = get_tree().get_nodes_in_group("Graves")
 	
 	for child in desired_children:
-		var graveIndex : int = randi_range(0, 7)
+		var graveIndex : int = randi_range(0, 6)
 		var FoundText : String = GraveTextArray[graveIndex]
 		child.SetGraveWritting(FoundText)
 

@@ -77,6 +77,8 @@ func HandleGameOverState(InState : bool):
 
 func OnGraveHit(IsEntered : bool, InWriting : String):
 	$HUD.ShowGraveWriting(true, InWriting)
+	await get_tree().create_timer(5).timeout
+	$HUD.ShowGraveWriting(false, InWriting)
 
 func GetLevelToUse():
 	return LevelLayouts
