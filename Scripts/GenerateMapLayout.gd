@@ -210,6 +210,10 @@ func InitAStarPath():
 func GetMinimalPathAmount(StartLocation):
 		PathStartLoc = StartLocation
 		
+		var desired_children = get_tree().get_nodes_in_group("Floor")
+		return desired_children.size() / 4.0
+		#return (astarGrid.size.x * astarGrid.size.y ) / 2.0
+		
 		var StartId : Vector2i = PathStartLoc / MapCellSize
 		var endId : Vector2i = GraveLocation / MapCellSize
 		var minimalPath = astarGrid.get_point_path(StartId, endId)
