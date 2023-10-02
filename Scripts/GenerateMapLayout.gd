@@ -182,8 +182,13 @@ func UpdateAllGraveTexts():
 		GraveName = ""
 		GraveRiddle.clear()
 		GraveStone = ""
+		
+		var isFound : bool = false
 	
 		for line in GraveTextArray:
+			
+			if isFound:
+				continue
 			
 			if line == ";":
 				TextPartIndex += 1
@@ -192,6 +197,8 @@ func UpdateAllGraveTexts():
 									
 					if CurrentGraveText == GraveToUse:
 						Child.SetGraveWritting(GraveName, GraveRiddle, GraveStone)
+						isFound = true
+						continue
 						
 					TextPartIndex = 1
 					GraveName = ""
