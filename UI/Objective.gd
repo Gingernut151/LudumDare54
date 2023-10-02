@@ -27,8 +27,11 @@ func ShowObjectiveScreen(ShouldShow : bool, InName : String):
 	if ShouldShow:
 		$CanvasLayer/btn_Resume.grab_focus()
 		$CanvasLayer.show()
-		$CanvasLayer/Label.text = "The Grave to Raid is: 
-			" + Grave_Name
+		$CanvasLayer/Label.text = "
+		The clue to unveil, 
+		the tomb to invade,
+		Lies within the riddle, 
+		in words we've laid. " + Grave_Name
 	else:
 		$CanvasLayer.hide()
 
