@@ -38,9 +38,10 @@ func _process(delta):
 		$HUD.update_debugtext(MinimalPathNeeded)
 		$Character.UpdateCellNeededToMove(MinimalPathNeeded)
 	
-		if Input.is_action_just_pressed("Pause"):
-			HandlePauseState(!isPaused)
-	else:
+		if  !isGameOver :
+			if Input.is_action_just_pressed("Pause"):
+				HandlePauseState(!isPaused)
+	elif  !isGameOver:
 		if Input.is_action_just_pressed("Pause"):
 			get_tree().quit()
 
@@ -77,6 +78,7 @@ func HandleGameOverState(InState : bool):
 func HandleObjectiveShownState(InState : bool):
 	isGameOver = InState
 	$HUD.ShowwInGameHUD(!InState)
+	HandlePauseState(false)
 	$Objective.ShowObjectiveScreen(InState, CurrentLevelMap.CurrentGraveToFind)
 	$Character.SetMovementState(!InState)
 	$Character.show()
