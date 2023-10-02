@@ -178,6 +178,10 @@ func UpdateAllGraveTexts():
 		
 		UsedGraves += str(GraveToUse)
 		CurrentGraveText = 0
+		TextPartIndex = 1
+		GraveName = ""
+		GraveRiddle.clear()
+		GraveStone = ""
 	
 		for line in GraveTextArray:
 			
